@@ -59,24 +59,24 @@ function checkImpart(gun,bullet,enermy) {
         a = 20;
         b = 90
     }
-    if (gun.type === anaconda) {
+    if (gun.type === anaconda || gun.type === anacondaBan) {
         if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 40 &&
             bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b) flag = true;
     }
-    if (gun.type === ak47) {
+    if (gun.type === ak47 || gun.type === ak47Ban) {
         if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 30 &&
             bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b) flag = true;
     }
-    if (gun.type === fnscar) {
+    if (gun.type === fnscar|| gun.type === fnscarBan) {
         if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 30 &&
             bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b) flag = true;
     }
-    if (gun.type === cheytac) {
+    if (gun.type === cheytac || gun.type=== cheytacBan) {
         if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 20 &&
             bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b) flag = true;
     }
-    if (gun.type === bazooka) {
-        if (bullet.positionX + 50 >= enermy.positionX - 50 && bullet.positionX + 50 <= enermy.positionX - 30 &&
+    if (gun.type === bazooka || gun.type === bazookaBan) {
+        if (bullet.positionX + 70 >= enermy.positionX - 50 && bullet.positionX + 70 <= enermy.positionX - 30 &&
             bullet.positionY - 8 >= enermy.positionY - a && bullet.positionY + 8 <= enermy.positionY + b) flag = true;
     }
 
