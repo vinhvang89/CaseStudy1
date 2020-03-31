@@ -6,8 +6,10 @@ let sung = new Weapons();
 let dan = new Bullet(sung);
 let dich = new  Enermy();
 let flag = 0;
-let hp = dich.hp1;
+let hp = hp1;
+
 function moveEnermy() {
+
     if(dich.positionY >= 400){
         flag = 1;
     }
@@ -52,10 +54,24 @@ function flying() {
         bullets[i].move();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpart(sung,bullets[i],dich) === true) hp -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy1) {hp -= sung.damage;hp1 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy2) {hp -= sung.damage;hp2 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy3) {hp -= sung.damage;hp3 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy4) {hp -= sung.damage;hp4 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy5) {hp -= sung.damage;hp5 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy6) {hp -= sung.damage;hp6 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy7) {hp -= sung.damage;hp7 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy8) {hp -= sung.damage;hp8 -= sung.damage};
     }
     document.getElementById("enermyHP").value = hp;
     sung.drawWeapon();
+    if ( hp1 <= 0) dich.changeEnermy2();
+    if ( hp2 <= 0) dich.changeEnermy3();
+    if ( hp3 <= 0) dich.changeEnermy4();
+    if ( hp4 <= 0) dich.changeEnermy5();
+    if ( hp5 <= 0) dich.changeEnermy6();
+    if ( hp6 <= 0) dich.changeEnermy7();
+    if ( hp7 <= 0) dich.changeEnermy8();
     dich.drawEnermy();
     requestAnimationFrame(flying)
 }
