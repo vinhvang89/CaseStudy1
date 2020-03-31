@@ -9,34 +9,43 @@
 </head>
 <body onkeydown="run()" >
 <canvas width="1390px" height="500px" id="myCanvas" style="border: 1px solid powderblue" ></canvas>
-<table >
+<table style="padding: 5px" >
     <tr>
         <td style="color: darkblue;font-size: 20px">Guns list :</td>
-        <td><button  style="width: 160px;height: 50px;color: darkblue;font-size: 16px" >[1] Anaconda</button></td>
-        <td><button  style="width: 160px;height: 50px;color: darkred;font-size: 16px" >[2] AK-47</button></td>
-        <td><button  style="width: 160px;height: 50px;color: orange;font-size: 16px" >[3] FNSCAR Light</button></td>
-        <td><button  style="width: 160px;height: 50px;color: darkcyan;font-size: 16px" >[4] Cheytac M200</button></td>
-        <td><button  style="width: 160px;height: 50px;color: darkgreen;font-size: 16px" >[5] Bazooka</button></td>
+        <td><button  style="width: 160px;height: 45px;color: darkblue;font-size: 16px" >[1] Anaconda</button></td>
+        <td><button  style="width: 160px;height: 45px;color: darkred;font-size: 16px" >[2] AK-47</button></td>
+        <td><button  style="width: 160px;height: 45px;color: orange;font-size: 16px" >[3] FNSCAR Light</button></td>
+        <td><button  style="width: 160px;height: 45px;color: darkcyan;font-size: 16px" >[4] Cheytac M200</button></td>
+        <td><button  style="width: 160px;height: 45px;color: darkgreen;font-size: 16px" >[5] Bazooka</button></td>
 
     </tr>
     <tr>
         <td style="color: indigo;font-size: 24px">Capacity :</td>
-        <td><input id="capacity1" type="text" style="width:156px;height: 45px;color: darkblue;font-size: 24px" align="center"></td>
-        <td><input id="capacity2" type="text" style="width:156px;height: 45px;color: darkred;font-size: 24px" align="center"></td>
-        <td><input id="capacity3" type="text" style="width:156px;height: 45px;color: orange;font-size: 24px" align="center"></td>
-        <td><input id="capacity4" type="text" style="width:156px;height: 45px;color: darkcyan;font-size: 24px" align="center"></td>
-        <td><input id="capacity5" type="text" style="width:156px;height: 45px;color: darkgreen;font-size: 24px" align="center"></td>
+        <td><input id="capacity1" type="text" style="width:156px;height: 40px;color: darkblue;font-size: 24px" align="center"></td>
+        <td><input id="capacity2" type="text" style="width:156px;height: 40px;color: darkred;font-size: 24px" align="center"></td>
+        <td><input id="capacity3" type="text" style="width:156px;height: 40px;color: orange;font-size: 24px" align="center"></td>
+        <td><input id="capacity4" type="text" style="width:156px;height: 40px;color: darkcyan;font-size: 24px" align="center"></td>
+        <td><input id="capacity5" type="text" style="width:156px;height: 40px;color: darkgreen;font-size: 24px" align="center"></td>
+        <td width="100px"></td>
+        <td id="tot" width="50px"></td>
+        <td id="xe" width="50px"></td>
+        <td id="ma" width="50px"></td>
+        <td id="tuong" width="50px"></td>
+        <td id="hau" width="50px"></td>
+        <td id="vua" width="50px"></td>
     </tr>
     <tr>
         <td style="color: darkblue;font-size: 16px" align="center">Your HP :</td>
-        <td><input id="yourHP" type="text" style="width: 156px;height: 45px;color: darkblue;font-size: 24px" align="center"></td>
+        <td><input id="yourHP" type="text" style="width: 156px;height: 35px;color: darkblue;font-size: 24px" align="center"></td>
         <td style="color: red;font-size: 16px" align="center">Enermy HP :</td>
-        <td><input id="enermyHP" type="text" style="width: 156px;height: 45px;color: red;font-size: 24px" align="center"></td>
+        <td><input id="enermyHP" type="text" style="width: 156px;height: 35px;color: red;font-size: 24px" align="center"></td>
+
     </tr>
 </table>
 <script src="sung.js"></script>
 <script src="dan.js"></script>
 <script src="enermy.js"></script>
+<script src="price.js"></script>
 <script src="Operator.js"></script>
 </body>
 </html>

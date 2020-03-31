@@ -7,6 +7,7 @@ let dich = new Enermy();
 let flag = 0;
 let hp = hp1;
 
+
 function moveEnermy() {
 
     if(dich.positionY >= 400){
@@ -29,7 +30,7 @@ function checkImpart(gun,bullet,enermy) {
     let flag = false;
     if (enermy.type === enermy1) {
         a = 30;
-        b = 160
+        b = 160;
     }
     if (enermy.type === enermy2) {
         a = 40;
@@ -44,12 +45,12 @@ function checkImpart(gun,bullet,enermy) {
         b = 120
     }
     if (enermy.type === enermy5) {
-        a = 40;
-        b = 120
+        a = 28;
+        b = 150
     }
     if (enermy.type === enermy6) {
-        a = 40;
-        b = 90
+        a = 28;
+        b = 120;
     }
     if (enermy.type === enermy7) {
         a = 50;
@@ -91,24 +92,27 @@ function flying() {
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy1) {hp -= sung.damage;hp1 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy2) {hp -= sung.damage;hp2 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy3) {hp -= sung.damage;hp3 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy4) {hp -= sung.damage;hp4 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy5) {hp -= sung.damage;hp5 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy6) {hp -= sung.damage;hp6 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy7) {hp -= sung.damage;hp7 -= sung.damage};
-        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy8) {hp -= sung.damage;hp8 -= sung.damage};
+        if (checkImpart(sung,bullets[i],dich) === true ) hp -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy1) hp1 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy2) hp2 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy3) hp3 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy4) hp4 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy5) hp5 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy6) hp6 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy7) hp7 -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true && dich.type === enermy8) hp8 -= sung.damage;
+
     }
     document.getElementById("enermyHP").value = hp;
     sung.drawWeapon();
     if ( hp1 <= 0) dich.changeEnermy2();
     if ( hp2 <= 0) dich.changeEnermy3();
-    if ( hp3 <= 0) dich.changeEnermy4();
-    if ( hp4 <= 0) dich.changeEnermy5();
-    if ( hp5 <= 0) dich.changeEnermy6();
-    if ( hp6 <= 0) dich.changeEnermy7();
-    if ( hp7 <= 0) dich.changeEnermy8();
+    if ( hp3 <= 0) {dich.changeEnermy4();document.getElementById("tot").innerHTML = tot}
+    if ( hp4 <= 0) {dich.changeEnermy5();document.getElementById("xe").innerHTML = xe}
+    if ( hp5 <= 0) {dich.changeEnermy6();document.getElementById("ma").innerHTML = ma}
+    if ( hp6 <= 0) {dich.changeEnermy7();document.getElementById("tuong").innerHTML = tuong}
+    if ( hp7 <= 0) {dich.changeEnermy8();document.getElementById("hau").innerHTML = hau}
+    if ( hp8 <= 0)  document.getElementById("vua").innerHTML = vua;
     dich.drawEnermy();
     requestAnimationFrame(flying)
 }
