@@ -44,14 +44,14 @@ let Weapons = function () {
     this.changeto1 = function () {
         this.type = anaconda;
         this.damage = 1;
-        this.bulletSpeed = 15;
+        this.bulletSpeed = 20;
         this.capacity = capacity1;
         this.speed = 5;
     };
     this.changeto2 = function () {
         this.type = ak47;
         this.damage = 6;
-        this.bulletSpeed = 20;
+        this.bulletSpeed = 23;
         this.capacity = capacity2;
         this.speed = 3;
 
@@ -59,13 +59,13 @@ let Weapons = function () {
     this.changeto3 = function () {
         this.type = fnscar;
         this.damage = 5;
-        this.bulletSpeed = 22;
+        this.bulletSpeed = 25;
         this.capacity = capacity3;
         this.speed = 3;
     };
     this.changeto4 = function () {
         this.type = cheytac;
-        this.damage = 25;
+        this.damage = 35;
         this.capacity = capacity4;
         this.speed = 2;
         this.bulletSpeed = 30;
@@ -75,16 +75,21 @@ let Weapons = function () {
         this.damage = 50;
         this.capacity = capacity5;
         this.speed = 1;
-        this.bulletSpeed = 12;
+        this.bulletSpeed = 15;
     };
     this.fire = function () {
         let a = 0;
-        if (this.type === anaconda || this.type === anacondaBan){ a = this.positionY + 10;}
-        if (this.type === ak47 || this.type === ak47Ban) {a = this.positionY + 10;}
-        if (this.type === fnscar || this.type === fnscarBan) {a = this.positionY + 28;}
-        if (this.type === cheytac || this.type === cheytacBan){ a = this.positionY + 20;}
-        if (this.type === bazooka || this.type === bazookaBan) {a = this.positionY + 25;}
-        let bullet = new Bullet(this, this.positionX + 50, a)
+        if (this.type === anaconda || this.type === anacondaBan)
+            a = this.positionY + 10;
+        if (this.type === ak47 || this.type === ak47Ban)
+            a = this.positionY + 10;
+        if (this.type === fnscar || this.type === fnscarBan)
+            a = this.positionY + 28;
+        if (this.type === cheytac || this.type === cheytacBan)
+            a = this.positionY + 20;
+        if (this.type === bazooka || this.type === bazookaBan)
+            a = this.positionY + 25;
+        let bullet = new Bullet(this, this.positionX + 100, a);
          bullets.push(bullet);
     }
 };

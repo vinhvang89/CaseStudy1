@@ -16,7 +16,6 @@ let hp5 = 130;
 let hp6 = 210;
 let hp7 = 340;
 let hp8 = 550;
-let enermyBullets =[];
 let Enermy = function () {
     this.type = enermy1;
     this.speed = 3;
