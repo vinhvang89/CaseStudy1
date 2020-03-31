@@ -10,7 +10,7 @@ let Bullet = function (weapon,positionX,positionY) {
     this.positionY = positionY;
     this.drawBullet = function () {
         let image = new Image();
-        if(weapon.type === bazooka ) image.src = rocket; else  image.src = bullet;
+        if(weapon.type === bazooka || weapon.type === bazookaBan ) image.src = rocket; else  image.src = bullet;
         dtx.drawImage(image,this.positionX,this.positionY)
     };
     this.moveRight = function () {

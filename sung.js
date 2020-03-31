@@ -5,11 +5,11 @@ const cheytac = "CHEYTAC.jpg";
 const anaconda = "ANACONDA.jpg";
 const fnscar = "FNSCAR.jpg";
 const ak47 = "AK47.jpg";
-// const bazookaBan =  "BAZOOKAban.jpg";
-// const cheytacBan = "CHEYTACban.jpg";
-// const anacondaBan = "ANACONDAban.jpg";
-// const fnscarBan = "FNSCARban.jpg";
-// const ak47Ban = "AK47ban.jpg";
+const bazookaBan =  "BAZOOKAban.jpg";
+const cheytacBan = "CHEYTACban.jpg";
+const anacondaBan = "ANACONDAban.jpg";
+const fnscarBan = "FNSCARban.jpg";
+const ak47Ban = "AK47ban.jpg";
 const positionX1 = 0;
 const positionY1 = 0;
 let capacity1 = 1000;
@@ -79,11 +79,11 @@ let Weapons = function () {
     };
     this.fire = function () {
         let a = 0;
-        if (this.type === anaconda){ a = this.positionY + 10;}
-        if (this.type === ak47) {a = this.positionY + 10;}
-        if (this.type === fnscar) {a = this.positionY + 28;}
-        if (this.type === cheytac){ a = this.positionY + 20;}
-        if (this.type === bazooka) {a = this.positionY + 25;}
+        if (this.type === anaconda || this.type === anacondaBan){ a = this.positionY + 10;}
+        if (this.type === ak47 || this.type === ak47Ban) {a = this.positionY + 10;}
+        if (this.type === fnscar || this.type === fnscarBan) {a = this.positionY + 28;}
+        if (this.type === cheytac || this.type === cheytacBan){ a = this.positionY + 20;}
+        if (this.type === bazooka || this.type === bazookaBan) {a = this.positionY + 25;}
         let bullet = new Bullet(this, this.positionX + 50, a)
          bullets.push(bullet);
     }
