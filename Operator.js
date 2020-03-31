@@ -4,8 +4,9 @@ function clearMap() {
 }
 let sung = new Weapons();
 let dan = new Bullet(sung);
-let dich = new  Enermy(20,enermy1,3);
+let dich = new  Enermy();
 let flag = 0;
+let hp = dich.hp1;
 function moveEnermy() {
     if(dich.positionY >= 400){
         flag = 1;
@@ -49,12 +50,11 @@ function flying() {
     for (let i = 0; i < bullets.length;i++) {
         if ( bullets[i].positionX < 1500){
         bullets[i].move();
-       bullets[i].drawBullet();
-        console.log(i + " "+ bullets[i].positionX);
+        bullets[i].drawBullet();
         }else continue;
-        if (checkImpart(sung,bullets[i],dich) === true) dich.hp -= sung.damage;
+        if (checkImpart(sung,bullets[i],dich) === true) hp -= sung.damage;
     }
-    document.getElementById("enermyHP").value = dich.hp
+    document.getElementById("enermyHP").value = hp;
     sung.drawWeapon();
     dich.drawEnermy();
     requestAnimationFrame(flying)
@@ -98,7 +98,27 @@ function move(event) {
             break;
         }
         case 32:{
+            if( sung.type === anaconda && capacity1 > 0)
             sung.fire();
+            if( sung.type === ak47 && capacity2 > 0)
+                sung.fire();
+            if( sung.type === fnscar && capacity3 > 0)
+                sung.fire();
+            if( sung.type === cheytac && capacity4 > 0)
+                sung.fire();
+            if( sung.type === bazooka && capacity5 > 0)
+                sung.fire();
+
+            if(sung.type === anaconda && capacity1 >0) capacity1--;
+            if(sung.type === ak47 && capacity2 > 0) capacity2 --;
+            if(sung.type === fnscar && capacity3 > 0) capacity3 --;
+            if(sung.type === cheytac && capacity4 > 0) capacity4 --;
+            if(sung.type === bazooka && capacity5 > 0 ) capacity5 --;
+            document.getElementById("capacity1").value = capacity1;
+            document.getElementById("capacity2").value = capacity2;
+            document.getElementById("capacity3").value = capacity3;
+            document.getElementById("capacity4").value = capacity4;
+            document.getElementById("capacity5").value = capacity5;
         }
     }
     clearMap();
