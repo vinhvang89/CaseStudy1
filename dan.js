@@ -13,7 +13,8 @@ let Bullet = function (weapon,positionX,positionY) {
         if(weapon.type === bazooka ) image.src = rocket; else  image.src = bullet;
         dtx.drawImage(image,this.positionX,this.positionY)
     };
-    this.move = function () {
-         this.positionX += this.speed;
+    this.moveRight = function () {
+        this.positionX += this.speed;
     };
+
 };

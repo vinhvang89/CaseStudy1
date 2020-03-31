@@ -16,6 +16,7 @@ let hp5 = 130;
 let hp6 = 210;
 let hp7 = 340;
 let hp8 = 550;
+let enermyBullets =[];
 let Enermy = function () {
     this.type = enermy1;
     this.speed = 3;
@@ -24,7 +25,7 @@ let Enermy = function () {
     this.drawEnermy = function () {
         let image = new Image();
         image.src = this.type;
-        etx.drawImage(image,this.positionX,this.positionY)
+        etx.drawImage(image, this.positionX, this.positionY)
 
     };
     this.moveEnermyUp = function () {
@@ -34,45 +35,48 @@ let Enermy = function () {
         this.positionY += this.speed;
     };
     this.changeEnermy2 = function () {
-            hp = hp2;
-            this.type = enermy2;
-            this.speed = 3;
-            this.positionX = 1250;
+        hp = hp2;
+        this.type = enermy2;
+        this.speed = 3;
+        this.positionX = 1250;
     };
     this.changeEnermy3 = function () {
-            hp = hp3;
-            this.type = enermy3;
-            this.speed = 3;
-            this.positionX = 1250;
+        hp = hp3;
+        this.type = enermy3;
+        this.speed = 3;
+        this.positionX = 1250;
     };
     this.changeEnermy4 = function () {
-            hp = hp4;
-            this.type = enermy4;
-            this.speed = 3;
-            this.positionX = 1250;
+        hp = hp4;
+        this.type = enermy4;
+        this.speed = 3;
+        this.positionX = 1250;
     };
     this.changeEnermy5 = function () {
-            hp = hp5;
-            this.type = enermy5;
-            this.speed = 4;
-            this.positionX = 1250;
+        hp = hp5;
+        this.type = enermy5;
+        this.speed = 4;
+        this.positionX = 1250;
     };
     this.changeEnermy6 = function () {
-            hp = hp6;
-            this.type = enermy6;
-            this.speed = 4;
-            this.positionX = 1250;
+        hp = hp6;
+        this.type = enermy6;
+        this.speed = 4;
+        this.positionX = 1250;
     };
     this.changeEnermy7 = function () {
-            hp = hp7;
-            this.type = enermy7;
-            this.speed = 5;
-            this.positionX = 1300;
+        hp = hp7;
+        this.type = enermy7;
+        this.speed = 5;
+        this.positionX = 1300;
     };
     this.changeEnermy8 = function () {
-            hp = hp8;
-            this.type = enermy8;
-            this.speed = 5;
-            this.positionX = 1300;
+        hp = hp8;
+        this.type = enermy8;
+        this.speed = 5;
+        this.positionX = 1300;
     };
+
+
 };
+
