@@ -26,6 +26,8 @@ let Weapons = function () {
     this.positionX = positionX1;
     this.positionY = positionY1;
     this.speed = 5;
+    this.sizeBulletX1 = 50;
+    this.sizeBulletX2 = -40;
     this.drawWeapon = function () {
         let image = new Image();
         image.src = this.type;
@@ -47,6 +49,8 @@ let Weapons = function () {
         this.bulletSpeed = 20;
         this.capacity = capacity1;
         this.speed = 5;
+        this.sizeBulletX1 = 50;
+        this.sizeBulletX2 = -40;
     };
     this.changeto2 = function () {
         this.type = ak47;
@@ -54,7 +58,8 @@ let Weapons = function () {
         this.bulletSpeed = 23;
         this.capacity = capacity2;
         this.speed = 3;
-
+        this.sizeBulletX1 = 50;
+        this.sizeBulletX2 = -40;
     };
     this.changeto3 = function () {
         this.type = fnscar;
@@ -62,6 +67,8 @@ let Weapons = function () {
         this.bulletSpeed = 25;
         this.capacity = capacity3;
         this.speed = 3;
+        this.sizeBulletX1 = 50;
+        this.sizeBulletX2 = -40;
     };
     this.changeto4 = function () {
         this.type = cheytac;
@@ -69,6 +76,8 @@ let Weapons = function () {
         this.capacity = capacity4;
         this.speed = 2;
         this.bulletSpeed = 30;
+        this.sizeBulletX1 = 50;
+        this.sizeBulletX2 = -20;
     };
     this.changeto5 = function () {
         this.type = bazooka;
@@ -76,6 +85,8 @@ let Weapons = function () {
         this.capacity = capacity5;
         this.speed = 1;
         this.bulletSpeed = 15;
+        this.sizeBulletX1 = 50;
+        this.sizeBulletX2 = -40;
     };
     this.fire = function () {
         let a = 0;

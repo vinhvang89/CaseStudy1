@@ -21,6 +21,8 @@ let Enermy = function () {
     this.speed = 3;
     this.positionX = 1250;
     this.positionY = 0;
+    this.sizeY1 = 30;
+    this.sizeY2 = 160;
     this.drawEnermy = function () {
         let image = new Image();
         image.src = this.type;
@@ -34,46 +36,53 @@ let Enermy = function () {
         this.positionY += this.speed;
     };
     this.changeEnermy2 = function () {
-        hp = hp2;
         this.type = enermy2;
         this.speed = 3;
         this.positionX = 1250;
+        this.sizeY1 = 40;
+        this.sizeY2 = 150;
     };
     this.changeEnermy3 = function () {
-        hp = hp3;
         this.type = enermy3;
         this.speed = 3;
         this.positionX = 1250;
+        this.sizeY1 = 40;
+        this.sizeY2 = 150;
     };
     this.changeEnermy4 = function () {
-        hp = hp4;
         this.type = enermy4;
         this.speed = 3;
         this.positionX = 1250;
+        this.sizeY1 = 40;
+        this.sizeY2 = 120;
     };
     this.changeEnermy5 = function () {
-        hp = hp5;
         this.type = enermy5;
         this.speed = 4;
         this.positionX = 1250;
+        this.sizeY1 = 28;
+        this.sizeY2 = 150;
     };
     this.changeEnermy6 = function () {
-        hp = hp6;
         this.type = enermy6;
         this.speed = 4;
         this.positionX = 1250;
+        this.sizeY1 = 28;
+        this.sizeY2 = 120;
     };
     this.changeEnermy7 = function () {
-        hp = hp7;
         this.type = enermy7;
         this.speed = 5;
         this.positionX = 1300;
+        this.sizeY1 = 50;
+        this.sizeY2 = 90;
     };
     this.changeEnermy8 = function () {
-        hp = hp8;
         this.type = enermy8;
         this.speed = 5;
         this.positionX = 1300;
+        this.sizeY1 = 20;
+        this.sizeY2 = 90;
     };
 
 

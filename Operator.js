@@ -28,67 +28,13 @@ function moveEnermy() {
 
 function checkImpart(gun,bullet,enermy) {
     let flag = false;
-    if (enermy.type === enermy1) {
-        a = 30;
-        b = 160;
-    }
-    if (enermy.type === enermy2) {
-        a = 40;
-        b = 150
-    }
-    if (enermy.type === enermy3) {
-        a = 40;
-        b = 130
-    }
-    if (enermy.type === enermy4) {
-        a = 40;
-        b = 120
-    }
-    if (enermy.type === enermy5) {
-        a = 28;
-        b = 150
-    }
-    if (enermy.type === enermy6) {
-        a = 28;
-        b = 120;
-    }
-    if (enermy.type === enermy7) {
-        a = 50;
-        b = 90
-    }
-    if (enermy.type === enermy8) {
-        a = 20;
-        b = 90
-    }
-    if (gun.type === anaconda || gun.type === anacondaBan) {
-        if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 40 &&
-            bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b)
-            flag = true;
-    }
-    if (gun.type === ak47 || gun.type === ak47Ban) {
-        if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 30 &&
-            bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b)
-            flag = true;
-    }
-    if (gun.type === fnscar|| gun.type === fnscarBan) {
-        if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 30 &&
-            bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b)
-            flag = true;
-    }
-    if (gun.type === cheytac || gun.type=== cheytacBan) {
-        if (bullet.positionX + 15 >= enermy.positionX - 50 && bullet.positionX + 15 <= enermy.positionX - 20 &&
-            bullet.positionY - 2 >= enermy.positionY - a && bullet.positionY + 2 <= enermy.positionY + b)
-            flag = true;
-    }
-    if (gun.type === bazooka || gun.type === bazookaBan) {
-        if (bullet.positionX + 70 >= enermy.positionX - 50 && bullet.positionX + 70 <= enermy.positionX - 30 &&
-            bullet.positionY - 8 >= enermy.positionY - a && bullet.positionY + 8 <= enermy.positionY + b)
-            flag = true;
-    }
-
-        return flag ;
+    if (bullet.positionX + 15 >= enermy.positionX - gun.sizeBulletX1 &&
+        bullet.positionX + 15 <= enermy.positionX + gun.sizeBulletX2 &&
+        bullet.positionY - 2 >= enermy.positionY - enermy.sizeY1 &&
+        bullet.positionY + 2 <= enermy.positionY + enermy.sizeY2)
+        flag = true;
+    return flag ;
 }
-
 
 function flying() {
     clearMap();
@@ -141,6 +87,19 @@ function flying() {
     dich.drawEnermy();
     requestAnimationFrame(flying)
 }
+function returnTypeOfGun(gun) {
+    if (gun.type === anaconda || gun.type === anacondaBan)
+        gun.type = anaconda;
+    if (gun.type === ak47 || gun.type === ak47Ban)
+        gun.type = ak47;
+    if (gun.type === fnscar || gun.type === fnscarBan)
+        gun.type = fnscar;
+    if (gun.type === cheytac || gun.type === cheytacBan)
+        gun.type = cheytac;
+    if (gun.type === bazooka || gun.type === bazookaBan)
+        gun.type = bazooka;
+    return gun.type
+}
 
 function move(event) {
     switch (event.keyCode) {
@@ -171,31 +130,15 @@ function move(event) {
         }
         case 38:
         case 37: {
-            if (sung.type === anaconda || sung.type === anacondaBan)
-                sung.type = anaconda;
-            if (sung.type === ak47 || sung.type === ak47Ban)
-                sung.type = ak47;
-            if (sung.type === fnscar || sung.type === fnscarBan)
-                sung.type = fnscar;
-            if (sung.type === cheytac || sung.type === cheytacBan)
-                sung.type = cheytac;
-            if (sung.type === bazooka || sung.type === bazookaBan)
-                sung.type = bazooka;
+            sung.positionX = 0;
+            returnTypeOfGun(sung);
             sung.moveUp();
             break;
         }
         case 39:
         case 40: {
-            if (sung.type === anaconda || sung.type === anacondaBan)
-                sung.type = anaconda;
-            if (sung.type === ak47 || sung.type === ak47Ban)
-                sung.type = ak47;
-            if (sung.type === fnscar || sung.type === fnscarBan) 
-                sung.type = fnscar;
-            if (sung.type === cheytac || sung.type === cheytacBan)
-                sung.type = cheytac;
-            if (sung.type === bazooka || sung.type === bazookaBan)
-                sung.type = bazooka;
+            sung.positionX = 0;
+            returnTypeOfGun(sung);
             sung.moveDown();
             break;
         }
@@ -207,27 +150,31 @@ function move(event) {
             }
             if (capacity2 > 0)
             if (sung.type === ak47 || sung.type === ak47Ban) {
+                sung.positionX = 12;
                 sung.type = ak47Ban;
-                sung.fire()
+                sung.fire();
             }
             if (capacity3 > 0)
             if (sung.type === fnscar || sung.type === fnscarBan ) {
+                sung.positionX = 10;
                 sung.type = fnscarBan;
                 sung.fire()
             }
             if (capacity4 > 0)
             if (sung.type === cheytac || sung.type === cheytacBan) {
+                sung.positionX = 20;
                 sung.type = cheytacBan;
                 sung.fire()
             }
             if( capacity5 > 0)
             if (sung.type === bazooka || sung.type === bazookaBan ) {
+                sung.positionX = 20;
                 sung.type = bazookaBan;
                 sung.fire()
             }
 
             if (sung.type === anaconda  || sung.type === anacondaBan )
-                if ( capacity1 > 0) capacity1--;
+                if (capacity1 > 0) capacity1--;
             if (sung.type === ak47 || sung.type === ak47Ban)
                 if (capacity2 > 0) capacity2--;
             if (sung.type === fnscar || sung.type === fnscarBan)
