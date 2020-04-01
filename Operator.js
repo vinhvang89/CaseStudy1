@@ -1,27 +1,27 @@
 let sung = new Weapons();
-let dich = new Enermy();
+let dich = new Enemy();
 let flag = 0;
 let hp = hp1;
 function clearMap() {
     ctx.clearRect(0,0,1400,500)
 }
-function moveEnermy() {
+function moveEnemy() {
 
     if(dich.positionY >= 400){
         flag = 1;
     }
     if (flag === 0) {
-        dich.moveEnermyDown();
+        dich.moveEnemyDown();
     }
     if (flag === 1) {
-        dich.moveEnermyUp();
+        dich.moveEnemyUp();
         if(dich.positionY <= 0){
             flag = 0;
         }
     }
     enemyFire();
 
-    requestAnimationFrame(moveEnermy);
+    requestAnimationFrame(moveEnemy);
 }
 
 function enemyFire () {
@@ -30,12 +30,12 @@ function enemyFire () {
 
 }
 
-function checkImpact(gun,bullet,enermy) {
+function checkImpact(gun,bullet,enemy) {
     let flag = false;
-    if (bullet.positionX + 15 >= enermy.positionX - gun.sizeBulletX1 &&
-        bullet.positionX + 15 <= enermy.positionX + gun.sizeBulletX2 &&
-        bullet.positionY - 2 >= enermy.positionY - enermy.sizeY1 &&
-        bullet.positionY + 2 <= enermy.positionY + enermy.sizeY2)
+    if (bullet.positionX + 15 >= enemy.positionX - gun.sizeBulletX1 &&
+        bullet.positionX + 15 <= enemy.positionX + gun.sizeBulletX2 &&
+        bullet.positionY - 2 >= enemy.positionY - enemy.sizeY1 &&
+        bullet.positionY + 2 <= enemy.positionY + enemy.sizeY2)
         flag = true;
     return flag ;
 }
@@ -52,51 +52,51 @@ function bulletFlying() {
             hp -= sung.damage;
 
     }
-    for (let j = 0; j <enermyBullets.length ; j++) {
-        if ( enermyBullets[j].positionX > 0){
-            enermyBullets[j].moveEnermyBullet();
-            enermyBullets[j].drawEnermyBullet();
+    for (let j = 0; j <enemyBullets.length ; j++) {
+        if ( enemyBullets[j].positionX > 0){
+            enemyBullets[j].moveEnemyBullet();
+            enemyBullets[j].drawEnemyBullet();
         }
     }
-    document.getElementById("enermyHP").value = hp;
+    document.getElementById("enemyHP").value = hp;
     sung.drawWeapon();
-    if ( hp <= 0 && dich.type === enermy1) {
-        dich.changeEnermy2();
+    if ( hp <= 0 && dich.type === enemy1) {
+        dich.changeEnemy2();
         hp = hp2
     }
-    if ( hp <= 0 && dich.type === enermy2) {
-        dich.changeEnermy3();
+    if ( hp <= 0 && dich.type === enemy2) {
+        dich.changeEnemy3();
         hp = hp3
     }
-    if ( hp <= 0 && dich.type === enermy3) {
-        dich.changeEnermy4();
+    if ( hp <= 0 && dich.type === enemy3) {
+        dich.changeEnemy4();
         hp = hp4;
         document.getElementById("tot").innerHTML = tot
     }
-    if ( hp <= 0 && dich.type === enermy4) {
-        dich.changeEnermy5();
+    if ( hp <= 0 && dich.type === enemy4) {
+        dich.changeEnemy5();
         hp = hp5;
         document.getElementById("xe").innerHTML = xe
     }
-    if ( hp <= 0 && dich.type === enermy5) {
-        dich.changeEnermy6();
+    if ( hp <= 0 && dich.type === enemy5) {
+        dich.changeEnemy6();
         hp = hp6;
         document.getElementById("ma").innerHTML = ma
     }
-    if ( hp <= 0 && dich.type === enermy6) {
-        dich.changeEnermy7();
+    if ( hp <= 0 && dich.type === enemy6) {
+        dich.changeEnemy7();
         hp = hp7;
         document.getElementById("tuong").innerHTML = tuong
     }
-    if ( hp <= 0 && dich.type === enermy7) {
-        dich.changeEnermy8();
+    if ( hp <= 0 && dich.type === enemy7) {
+        dich.changeEnemy8();
         hp = hp8;
         document.getElementById("hau").innerHTML = hau
     }
     if ( hp <= 0) {
         document.getElementById("vua").innerHTML = vua
     }
-    dich.drawEnermy();
+    dich.drawEnemy();
     requestAnimationFrame(bulletFlying)
 }
 function returnTypeOfGun(gun) {
@@ -205,7 +205,7 @@ function move(event) {
     }
 
         clearMap();
-        dich.drawEnermy();
+        dich.drawEnemy();
         sung.drawWeapon();
 
 }
@@ -214,5 +214,5 @@ function run() {
     window.addEventListener('keydown',move);
 }
 bulletFlying();
-moveEnermy();
+moveEnemy();
 

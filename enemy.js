@@ -1,14 +1,14 @@
 let e = document.getElementById("myCanvas");
 let etx = e.getContext('2d');
-let enermyBullets =[];
-const enermy1 = "dich1.png";
-const enermy2 = "dich2.png";
-const enermy3 = "dich3.png";
-const enermy4 = "dich4.png";
-const enermy5 = "dich5.png";
-const enermy6 = "dich6.png";
-const enermy7 = "dich7.png";
-const enermy8 = "dich8.png";
+let enemyBullets =[];
+const enemy1 = "dich1.png";
+const enemy2 = "dich2.png";
+const enemy3 = "dich3.png";
+const enemy4 = "dich4.png";
+const enemy5 = "dich5.png";
+const enemy6 = "dich6.png";
+const enemy7 = "dich7.png";
+const enemy8 = "dich8.png";
 let hp1 = 20;
 let hp2 = 30;
 let hp3 = 50;
@@ -17,75 +17,75 @@ let hp5 = 130;
 let hp6 = 210;
 let hp7 = 340;
 let hp8 = 550;
-let Enermy = function () {
-    this.type = enermy1;
+let Enemy = function () {
+    this.type = enemy1;
     this.speed = 3;
     this.positionX = 1250;
     this.positionY = 0;
     this.sizeY1 = 30;
     this.sizeY2 = 160;
-    this.reloadTime = 60;
+    this.reloadTime = 200;
     this.reloadCount = 0;
-    this.drawEnermy = function () {
+    this.drawEnemy = function () {
         let image = new Image();
         image.src = this.type;
         etx.drawImage(image, this.positionX, this.positionY)
 
     };
-    this.moveEnermyUp = function () {
+    this.moveEnemyUp = function () {
         this.positionY -= this.speed;
     };
-    this.moveEnermyDown = function () {
+    this.moveEnemyDown = function () {
         this.positionY += this.speed;
     };
     this.fire = function () {
-        let enermyBullet = new EnermyBullet(this,15);
-        enermyBullets.push(enermyBullet);
+        let enemyBullet = new EnemyBullet(this,15);
+        enemyBullets.push(enemyBullet);
     };
-    this.changeEnermy2 = function () {
-        this.type = enermy2;
+    this.changeEnemy2 = function () {
+        this.type = enemy2;
         this.speed = 3;
         this.positionX = 1250;
         this.sizeY1 = 40;
         this.sizeY2 = 150;
     };
-    this.changeEnermy3 = function () {
-        this.type = enermy3;
+    this.changeEnemy3 = function () {
+        this.type = enemy3;
         this.speed = 3;
         this.positionX = 1250;
         this.sizeY1 = 40;
         this.sizeY2 = 150;
     };
-    this.changeEnermy4 = function () {
-        this.type = enermy4;
+    this.changeEnemy4 = function () {
+        this.type = enemy4;
         this.speed = 3;
         this.positionX = 1250;
         this.sizeY1 = 40;
         this.sizeY2 = 120;
     };
-    this.changeEnermy5 = function () {
-        this.type = enermy5;
+    this.changeEnemy5 = function () {
+        this.type = enemy5;
         this.speed = 4;
         this.positionX = 1250;
         this.sizeY1 = 28;
         this.sizeY2 = 170;
     };
-    this.changeEnermy6 = function () {
-        this.type = enermy6;
+    this.changeEnemy6 = function () {
+        this.type = enemy6;
         this.speed = 4;
         this.positionX = 1250;
         this.sizeY1 = 28;
         this.sizeY2 = 110;
     };
-    this.changeEnermy7 = function () {
-        this.type = enermy7;
+    this.changeEnemy7 = function () {
+        this.type = enemy7;
         this.speed = 5;
         this.positionX = 1300;
         this.sizeY1 = 50;
         this.sizeY2 = 90;
     };
-    this.changeEnermy8 = function () {
-        this.type = enermy8;
+    this.changeEnemy8 = function () {
+        this.type = enemy8;
         this.speed = 5;
         this.positionX = 1300;
         this.sizeY1 = 20;
