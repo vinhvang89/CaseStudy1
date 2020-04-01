@@ -19,15 +19,15 @@ function moveEnermy() {
             flag = 0;
         }
     }
-    if ( dich.positionY > 70  && dich.positionY < 73 ||
-         dich.positionY > 141 && dich.positionY < 143 ||
-         dich.positionY > 287  && dich.positionY < 289 ||
-         dich.positionY > 395 && dich.positionY < 397 ||
-         dich.positionY > 30 && dich.positionY < 33 ||
-         dich.positionY > 210 && dich.positionY <212 )
-        dich.fire();
+    enemyFire();
 
     requestAnimationFrame(moveEnermy);
+}
+
+function enemyFire () {
+    dich.reloadCount++;
+    if ( dich.reloadCount >= dich.reloadTime ) {dich.fire();dich.reloadCount = 0}
+
 }
 
 function checkImpact(gun,bullet,enermy) {
@@ -157,6 +157,7 @@ function move(event) {
         case 32: {
             if (capacity1 > 0)
             if (sung.type === anaconda || sung.type === anacondaBan)  {
+                sung.positionX = 12;
                 sung.type = anacondaBan;
                 sung.fire();
             }
@@ -185,7 +186,7 @@ function move(event) {
                 sung.fire()
             }
 
-            if (sung.type === anaconda  || sung.type === anacondaBan )
+            if (sung.type === anaconda || sung.type === anacondaBan)
                 if (capacity1 > 0) capacity1--;
             if (sung.type === ak47 || sung.type === ak47Ban)
                 if (capacity2 > 0) capacity2--;

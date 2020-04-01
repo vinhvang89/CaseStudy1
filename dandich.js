@@ -1,10 +1,10 @@
 let f = document.getElementById("myCanvas");
 let ftx = f.getContext("2d");
 const BULLETENERMY = "dandich.jpg";
-const GRENADE = "luudan.jpg";
-const KNIVE = "dao.jpg";
+const GRENADE = "luudan.png";
+const KNIVE = "dao.png";
 let EnermyBullet = function (enermy) {
-    this.type = KNIVE;
+    this.type = BULLETENERMY;
     this.positionX = enermy.positionX;
     this.positionY = enermy.positionY ;
     this.drawEnermyBullet = function () {

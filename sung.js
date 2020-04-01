@@ -1,15 +1,15 @@
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext('2d');
-const bazooka =  "BAZOOKA.jpg";
-const cheytac = "CHEYTAC.jpg";
-const anaconda = "ANACONDA.jpg";
-const fnscar = "FNSCAR.jpg";
-const ak47 = "AK47.jpg";
-const bazookaBan =  "BAZOOKAban.jpg";
-const cheytacBan = "CHEYTACban.jpg";
-const anacondaBan = "ANACONDAban.jpg";
-const fnscarBan = "FNSCARban.jpg";
-const ak47Ban = "AK47ban.jpg";
+const bazooka =  "BAZOOKA.png";
+const cheytac = "CHEYTAC.png";
+const anaconda = "ANACONDA.png";
+const fnscar = "FNSCAR.png";
+const ak47 = "AK47.png";
+const bazookaBan =  "BAZOOKAban.png";
+const cheytacBan = "CHEYTACban.png";
+const anacondaBan = "ANACONDAban.png";
+const fnscarBan = "FNSCARban.png";
+const ak47Ban = "AK47ban.png";
 const positionX1 = 0;
 const positionY1 = 0;
 let capacity1 = 1000;
@@ -27,7 +27,7 @@ let Weapons = function () {
     this.positionY = positionY1;
     this.speed = 5;
     this.sizeBulletX1 = 50;
-    this.sizeBulletX2 = -40;
+    this.sizeBulletX2 = -30;
     this.drawWeapon = function () {
         let image = new Image();
         image.src = this.type;
@@ -50,7 +50,7 @@ let Weapons = function () {
         this.capacity = capacity1;
         this.speed = 5;
         this.sizeBulletX1 = 50;
-        this.sizeBulletX2 = -40;
+        this.sizeBulletX2 = -30;
     };
     this.changeto2 = function () {
         this.type = ak47;
@@ -59,7 +59,7 @@ let Weapons = function () {
         this.capacity = capacity2;
         this.speed = 3;
         this.sizeBulletX1 = 50;
-        this.sizeBulletX2 = -40;
+        this.sizeBulletX2 = -30;
     };
     this.changeto3 = function () {
         this.type = fnscar;
@@ -91,7 +91,7 @@ let Weapons = function () {
     this.fire = function () {
         let a = 0;
         if (this.type === anaconda || this.type === anacondaBan)
-            a = this.positionY + 10;
+            a = this.positionY + 11;
         if (this.type === ak47 || this.type === ak47Ban)
             a = this.positionY + 10;
         if (this.type === fnscar || this.type === fnscarBan)
@@ -99,8 +99,8 @@ let Weapons = function () {
         if (this.type === cheytac || this.type === cheytacBan)
             a = this.positionY + 20;
         if (this.type === bazooka || this.type === bazookaBan)
-            a = this.positionY + 25;
-        let bullet = new Bullet(this, this.positionX + 100, a);
+            a = this.positionY + 26;
+        let bullet = new Bullet(this, this.positionX + 150, a);
          bullets.push(bullet);
     }
 };
