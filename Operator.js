@@ -2,6 +2,7 @@ let sung = new Weapons();
 let dich = new Enemy();
 let flag = 0;
 let hp = hp1;
+let map = new Map();
 function clearMap() {
     ctx.clearRect(0,0,1400,500)
 }
@@ -48,9 +49,64 @@ function checkImpactWithPlayer(gun,bullets) {
          flag = true;
     return flag;
 }
+function endGame() {
+    let flag = false;
+    if ( capacity1 === 0 && capacity2 === 0 &&
+        capacity3 === 0 && capacity4 === 0 &&
+        capacity5 === 0) flag = true;
+    if ( sung.hp <= 0) flag = true;
+    if ( document.getElementById("vua").value === vua) flag = true;
+    if ( flag === true ) return alert("Game Over and press F5 to replay")
+}
+function changeEnemy() {
+    if ( hp <= 0 && dich.type === enemy1) {
+        map.map = MAP2 ;
+        dich.changeEnemy2();
+        hp = hp2
+    }
+    if ( hp <= 0 && dich.type === enemy2) {
+        map.map = MAP3 ;
+        dich.changeEnemy3();
+        hp = hp3
+    }
+    if ( hp <= 0 && dich.type === enemy3) {
+        map.map = MAP4 ;
+        dich.changeEnemy4();
+        hp = hp4;
+        document.getElementById("tot").innerHTML = tot
+    }
+    if ( hp <= 0 && dich.type === enemy4) {
+        map.map = MAP5 ;
+        dich.changeEnemy5();
+        hp = hp5;
+        document.getElementById("xe").innerHTML = xe
+    }
+    if ( hp <= 0 && dich.type === enemy5) {
+        map.map = MAP6 ;
+        dich.changeEnemy6();
+        hp = hp6;
+        document.getElementById("ma").innerHTML = ma
+    }
+    if ( hp <= 0 && dich.type === enemy6) {
+        map.map = MAP7 ;
+        dich.changeEnemy7();
+        hp = hp7;
+        document.getElementById("tuong").innerHTML = tuong
+    }
+    if ( hp <= 0 && dich.type === enemy7) {
+        map.map = MAP8 ;
+        dich.changeEnemy8();
+        hp = hp8;
+        document.getElementById("hau").innerHTML = hau
+    }
+    if ( hp <= 0) {
+        document.getElementById("vua").innerHTML = vua
+    }
+}
 
 function bulletFlying() {
     clearMap();
+    map.drawMap();
     for (let i = 0; i < bullets.length;i++) {
         if ( bullets[i].positionX < 1500){
         bullets[i].moveRight();
@@ -71,43 +127,9 @@ function bulletFlying() {
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
     sung.drawWeapon();
-    if ( hp <= 0 && dich.type === enemy1) {
-        dich.changeEnemy2();
-        hp = hp2
-    }
-    if ( hp <= 0 && dich.type === enemy2) {
-        dich.changeEnemy3();
-        hp = hp3
-    }
-    if ( hp <= 0 && dich.type === enemy3) {
-        dich.changeEnemy4();
-        hp = hp4;
-        document.getElementById("tot").innerHTML = tot
-    }
-    if ( hp <= 0 && dich.type === enemy4) {
-        dich.changeEnemy5();
-        hp = hp5;
-        document.getElementById("xe").innerHTML = xe
-    }
-    if ( hp <= 0 && dich.type === enemy5) {
-        dich.changeEnemy6();
-        hp = hp6;
-        document.getElementById("ma").innerHTML = ma
-    }
-    if ( hp <= 0 && dich.type === enemy6) {
-        dich.changeEnemy7();
-        hp = hp7;
-        document.getElementById("tuong").innerHTML = tuong
-    }
-    if ( hp <= 0 && dich.type === enemy7) {
-        dich.changeEnemy8();
-        hp = hp8;
-        document.getElementById("hau").innerHTML = hau
-    }
-    if ( hp <= 0) {
-        document.getElementById("vua").innerHTML = vua
-    }
+    changeEnemy();
     dich.drawEnemy();
+    endGame();
     requestAnimationFrame(bulletFlying)
 }
 function returnTypeOfGun(gun) {
@@ -215,9 +237,10 @@ function move(event) {
         }
     }
 
-        clearMap();
-        dich.drawEnemy();
-        sung.drawWeapon();
+    clearMap();
+    map.drawMap()
+    dich.drawEnemy();
+    sung.drawWeapon();
 
 }
 
