@@ -30,16 +30,24 @@ function enemyFire () {
 
 }
 
-function checkImpact(gun,bullet,enemy) {
+function checkImpactWithEnemy(gun,bullets,enemy) {
     let flag = false;
-    if (bullet.positionX + 15 >= enemy.positionX - gun.sizeBulletX1 &&
-        bullet.positionX + 15 <= enemy.positionX + gun.sizeBulletX2 &&
-        bullet.positionY - 2 >= enemy.positionY - enemy.sizeY1 &&
-        bullet.positionY + 2 <= enemy.positionY + enemy.sizeY2)
+    if (bullets.positionX + 15 >= enemy.positionX - gun.sizeBulletX1 &&
+        bullets.positionX + 15 <= enemy.positionX + gun.sizeBulletX2 &&
+        bullets.positionY - 2 >= enemy.positionY - enemy.sizeY1 &&
+        bullets.positionY + 2 <= enemy.positionY + enemy.sizeY2)
         flag = true;
     return flag ;
 }
-
+function checkImpactWithPlayer(gun,bullets) {
+    let flag = false;
+    if ( bullets.positionX + 20 >= gun.positionX - 20 &&
+         bullets.positionX + 20 <= gun.positionX + 20 &&
+         bullets.positionY + 2 >= gun.positionY - 50 &&
+         bullets.positionY + 2 <= gun.positionY + 50)
+         flag = true;
+    return flag;
+}
 
 function bulletFlying() {
     clearMap();
@@ -48,7 +56,7 @@ function bulletFlying() {
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpact(sung,bullets[i],dich) === true )
+        if (checkImpactWithEnemy(sung,bullets[i],dich) === true )
             hp -= sung.damage;
 
     }
@@ -56,9 +64,12 @@ function bulletFlying() {
         if ( enemyBullets[j].positionX > 0){
             enemyBullets[j].moveEnemyBullet();
             enemyBullets[j].drawEnemyBullet();
-        }
+        } else continue;
+        if ( checkImpactWithPlayer(sung,enemyBullets[j])===true)
+            sung.hp -= 2 ;
     }
     document.getElementById("enemyHP").value = hp;
+    document.getElementById("yourHP").value = sung.hp;
     sung.drawWeapon();
     if ( hp <= 0 && dich.type === enemy1) {
         dich.changeEnemy2();
