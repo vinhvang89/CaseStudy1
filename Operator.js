@@ -1,13 +1,10 @@
-
-function clearMap() {
-    ctx.clearRect(0,0,1400,500)
-}
 let sung = new Weapons();
 let dich = new Enermy();
 let flag = 0;
 let hp = hp1;
-
-
+function clearMap() {
+    ctx.clearRect(0,0,1400,500)
+}
 function moveEnermy() {
 
     if(dich.positionY >= 400){
@@ -22,11 +19,18 @@ function moveEnermy() {
             flag = 0;
         }
     }
+    if ( dich.positionY > 70  && dich.positionY < 73 ||
+         dich.positionY > 141 && dich.positionY < 143 ||
+         dich.positionY > 287  && dich.positionY < 289 ||
+         dich.positionY > 395 && dich.positionY < 397 ||
+         dich.positionY > 30 && dich.positionY < 33 ||
+         dich.positionY > 210 && dich.positionY <212 )
+        dich.fire();
 
     requestAnimationFrame(moveEnermy);
 }
 
-function checkImpart(gun,bullet,enermy) {
+function checkImpact(gun,bullet,enermy) {
     let flag = false;
     if (bullet.positionX + 15 >= enermy.positionX - gun.sizeBulletX1 &&
         bullet.positionX + 15 <= enermy.positionX + gun.sizeBulletX2 &&
@@ -36,16 +40,23 @@ function checkImpart(gun,bullet,enermy) {
     return flag ;
 }
 
-function flying() {
+
+function bulletFlying() {
     clearMap();
     for (let i = 0; i < bullets.length;i++) {
         if ( bullets[i].positionX < 1500){
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpart(sung,bullets[i],dich) === true )
+        if (checkImpact(sung,bullets[i],dich) === true )
             hp -= sung.damage;
 
+    }
+    for (let j = 0; j <enermyBullets.length ; j++) {
+        if ( enermyBullets[j].positionX > 0){
+            enermyBullets[j].moveEnermyBullet();
+            enermyBullets[j].drawEnermyBullet();
+        }
     }
     document.getElementById("enermyHP").value = hp;
     sung.drawWeapon();
@@ -82,10 +93,11 @@ function flying() {
         hp = hp8;
         document.getElementById("hau").innerHTML = hau
     }
-    if ( hp <= 0)
-        document.getElementById("vua").innerHTML = vua;
+    if ( hp <= 0) {
+        document.getElementById("vua").innerHTML = vua
+    }
     dich.drawEnermy();
-    requestAnimationFrame(flying)
+    requestAnimationFrame(bulletFlying)
 }
 function returnTypeOfGun(gun) {
     if (gun.type === anaconda || gun.type === anacondaBan)
@@ -200,6 +212,6 @@ function move(event) {
 function run() {
     window.addEventListener('keydown',move);
 }
-flying();
+bulletFlying();
 moveEnermy();
 

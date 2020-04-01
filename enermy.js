@@ -1,5 +1,6 @@
 let e = document.getElementById("myCanvas");
 let etx = e.getContext('2d');
+let enermyBullets =[];
 const enermy1 = "dich1.jpg";
 const enermy2 = "dich2.jpg";
 const enermy3 = "dich3.jpg";
@@ -35,6 +36,10 @@ let Enermy = function () {
     this.moveEnermyDown = function () {
         this.positionY += this.speed;
     };
+    this.fire = function () {
+        let enermyBullet = new EnermyBullet(this,15);
+        enermyBullets.push(enermyBullet);
+    };
     this.changeEnermy2 = function () {
         this.type = enermy2;
         this.speed = 3;
@@ -61,14 +66,14 @@ let Enermy = function () {
         this.speed = 4;
         this.positionX = 1250;
         this.sizeY1 = 28;
-        this.sizeY2 = 150;
+        this.sizeY2 = 170;
     };
     this.changeEnermy6 = function () {
         this.type = enermy6;
         this.speed = 4;
         this.positionX = 1250;
         this.sizeY1 = 28;
-        this.sizeY2 = 120;
+        this.sizeY2 = 110;
     };
     this.changeEnermy7 = function () {
         this.type = enermy7;
