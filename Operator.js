@@ -62,40 +62,47 @@ function changeEnemy() {
     if ( hp <= 0 && dich.type === enemy1) {
         map.map = MAP2 ;
         dich.changeEnemy2();
+        sung.hp += 1 ;
         hp = hp2
     }
     if ( hp <= 0 && dich.type === enemy2) {
         map.map = MAP3 ;
         dich.changeEnemy3();
+        sung.hp += 2 ;
         hp = hp3
     }
     if ( hp <= 0 && dich.type === enemy3) {
         map.map = MAP4 ;
         dich.changeEnemy4();
+        sung.hp += 3;
         hp = hp4;
         document.getElementById("tot").innerHTML = tot
     }
     if ( hp <= 0 && dich.type === enemy4) {
         map.map = MAP5 ;
         dich.changeEnemy5();
+        sung.hp += 4 ;
         hp = hp5;
         document.getElementById("xe").innerHTML = xe
     }
     if ( hp <= 0 && dich.type === enemy5) {
         map.map = MAP6 ;
         dich.changeEnemy6();
+        sung.hp += 5;
         hp = hp6;
         document.getElementById("ma").innerHTML = ma
     }
     if ( hp <= 0 && dich.type === enemy6) {
         map.map = MAP7 ;
         dich.changeEnemy7();
+        sung.hp +=6;
         hp = hp7;
         document.getElementById("tuong").innerHTML = tuong
     }
     if ( hp <= 0 && dich.type === enemy7) {
         map.map = MAP8 ;
         dich.changeEnemy8();
+        sung.hp += 7 ;
         hp = hp8;
         document.getElementById("hau").innerHTML = hau
     }
@@ -122,7 +129,7 @@ function bulletFlying() {
             enemyBullets[j].drawEnemyBullet();
         } else continue;
         if ( checkImpactWithPlayer(sung,enemyBullets[j])===true)
-            sung.hp -= 2 ;
+            sung.hp -= 1 ;
     }
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
@@ -238,7 +245,7 @@ function move(event) {
     }
 
     clearMap();
-    map.drawMap()
+    map.drawMap();
     dich.drawEnemy();
     sung.drawWeapon();
 
