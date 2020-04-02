@@ -3,6 +3,7 @@ let dich = new Enemy();
 let flag = 0;
 let hp = hp1;
 let map = new Map();
+let flagToEnd = true;
 function clearMap() {
     ctx.clearRect(0,0,1400,500)
 }
@@ -45,7 +46,8 @@ function moveEnemy() {
             flag = 0;
         }
     }
-    enemyAttack();
+    if ( flagToEnd === true)
+        enemyAttack();
 
     requestAnimationFrame(moveEnemy);
 }
@@ -73,16 +75,19 @@ function endGame() {
     if ( capacity1 === 0 && capacity2 === 0 &&
         capacity3 === 0 && capacity4 === 0 &&
         capacity5 === 0) {
+        flagToEnd = false;
         clearMap();
         drawLoseGame();
     }
     if ( sung.hp <= 0) {
+        flagToEnd = false;
         clearMap();
         drawLoseGame();
     }
     if ( document.getElementById("vua").value === vua){
         clearMap();
-        drawWinImage()
+        drawWinImage();
+        flagToEnd = false;
     }
 }
 function changeEnemy() {
@@ -146,7 +151,7 @@ function bulletFlying() {
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpactWithEnemy(sung,bullets[i],dich) === true )
+        if (checkImpactWithEnemy(sung,bullets[i],dich) === true && flagToEnd === true )
             hp -= sung.damage;
 
     }
@@ -155,14 +160,16 @@ function bulletFlying() {
             enemyBullets[j].moveEnemyBullet();
             enemyBullets[j].drawEnemyBullet();
         } else continue;
-        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true)
+        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true && flagToEnd === true)
             sung.hp -= enemyBullets[j].damage;
     }
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
-    sung.drawWeapon();
-    changeEnemy();
-    dich.drawEnemy();
+    if ( flagToEnd === true) {
+        sung.drawWeapon();
+        changeEnemy();
+        dich.drawEnemy();
+    }
     endGame();
     requestAnimationFrame(bulletFlying)
 }
@@ -222,31 +229,31 @@ function move(event) {
             break;
         }
         case 32: {
-            if (capacity1 > 0)
+            if (capacity1 > 0 && flagToEnd === true)
             if (sung.type === anaconda || sung.type === anacondaBan)  {
                 sung.positionX = 12;
                 sung.type = anacondaBan;
                 sung.fire();
             }
-            if (capacity2 > 0)
+            if (capacity2 > 0 && flagToEnd === true)
             if (sung.type === ak47 || sung.type === ak47Ban) {
                 sung.positionX = 12;
                 sung.type = ak47Ban;
                 sung.fire();
             }
-            if (capacity3 > 0)
+            if (capacity3 > 0 && flagToEnd === true)
             if (sung.type === fnscar || sung.type === fnscarBan ) {
                 sung.positionX = 10;
                 sung.type = fnscarBan;
                 sung.fire()
             }
-            if (capacity4 > 0)
+            if (capacity4 > 0 && flagToEnd === true)
             if (sung.type === cheytac || sung.type === cheytacBan) {
                 sung.positionX = 20;
                 sung.type = cheytacBan;
                 sung.fire()
             }
-            if( capacity5 > 0)
+            if( capacity5 > 0 && flagToEnd === true)
             if (sung.type === bazooka || sung.type === bazookaBan ) {
                 sung.positionX = 20;
                 sung.type = bazookaBan;
@@ -254,15 +261,20 @@ function move(event) {
             }
 
             if (sung.type === anaconda || sung.type === anacondaBan)
-                if (capacity1 > 0) capacity1--;
+                if (capacity1 > 0 && flagToEnd === true)
+                    capacity1--;
             if (sung.type === ak47 || sung.type === ak47Ban)
-                if (capacity2 > 0) capacity2--;
+                if (capacity2 > 0 && flagToEnd === true)
+                    capacity2--;
             if (sung.type === fnscar || sung.type === fnscarBan)
-                if (capacity3 > 0) capacity3--;
+                if (capacity3 > 0 && flagToEnd === true)
+                    capacity3--;
             if (sung.type === cheytac || sung.type === cheytacBan)
-                if (capacity4 > 0) capacity4--;
+                if (capacity4 > 0 && flagToEnd === true)
+                    capacity4--;
             if (sung.type === bazooka || sung.type === bazookaBan)
-                if( capacity5 > 0) capacity5--;
+                if( capacity5 > 0 && flagToEnd === true)
+                    capacity5--;
             document.getElementById("capacity1").value = capacity1;
             document.getElementById("capacity2").value = capacity2;
             document.getElementById("capacity3").value = capacity3;
@@ -270,12 +282,12 @@ function move(event) {
             document.getElementById("capacity5").value = capacity5;
         }
     }
-
-    clearMap();
-    map.drawMap();
-    dich.drawEnemy();
-    sung.drawWeapon();
-
+    if(flagToEnd === true) {
+        clearMap();
+        map.drawMap();
+        dich.drawEnemy();
+        sung.drawWeapon();
+    }
 }
 
 function run() {
@@ -283,4 +295,6 @@ function run() {
 }
 bulletFlying();
 moveEnemy();
+
+
 
