@@ -20,10 +20,10 @@ let hp8 = 550;
 let Enemy = function () {
     this.type = enemy1;
     this.speed = 3;
+    this.multiPoints = 1;
     this.positionX = 1250;
     this.positionY = 0;
-    this.sizeY1 = 30;
-    this.sizeY2 = 160;
+    this.size = 200;
     this.reloadTime1 = 197;
     this.reloadCount1 = 0;
     this.reloadTime2 = 289;
@@ -58,50 +58,50 @@ let Enemy = function () {
         this.type = enemy2;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeY1 = 40;
-        this.sizeY2 = 150;
+        this.size = 170;
+        this.multiPoints = 2;
     };
     this.changeEnemy3 = function () {
         this.type = enemy3;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeY1 = 40;
-        this.sizeY2 = 150;
+        this.size = 160;
+        this.multiPoints = 3;
     };
     this.changeEnemy4 = function () {
         this.type = enemy4;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeY1 = 40;
-        this.sizeY2 = 120;
+        this.size = 150;
+        this.multiPoints = 4;
     };
     this.changeEnemy5 = function () {
         this.type = enemy5;
         this.speed = 4;
         this.positionX = 1250;
-        this.sizeY1 = 28;
-        this.sizeY2 = 170;
+        this.size = 132;
+        this.multiPoints = 5;
     };
     this.changeEnemy6 = function () {
         this.type = enemy6;
         this.speed = 4;
         this.positionX = 1250;
-        this.sizeY1 = 28;
-        this.sizeY2 = 110;
+        this.size = 135;
+        this.multiPoints = 6;
     };
     this.changeEnemy7 = function () {
         this.type = enemy7;
         this.speed = 5;
         this.positionX = 1300;
-        this.sizeY1 = 50;
-        this.sizeY2 = 90;
+        this.size = 100;
+        this.multiPoints = 7;
     };
     this.changeEnemy8 = function () {
         this.type = enemy8;
         this.speed = 5;
         this.positionX = 1300;
-        this.sizeY1 = 20;
-        this.sizeY2 = 90;
+        this.size = 81;
+        this.multiPoints = 8;
     };
 
 

@@ -55,10 +55,10 @@ function moveEnemy() {
 
 function checkImpactWithEnemy(gun,bullets,enemy) {
     let flag = false;
-    if (bullets.positionX + 15 >= enemy.positionX - gun.sizeBulletX1 &&
-        bullets.positionX + 15 <= enemy.positionX + gun.sizeBulletX2 &&
-        bullets.positionY - 2 >= enemy.positionY - enemy.sizeY1 &&
-        bullets.positionY + 2 <= enemy.positionY + enemy.sizeY2)
+    if (bullets.positionX + 15 >= enemy.positionX + 30 &&
+        bullets.positionX + 15 <= enemy.positionX + 50 &&
+        bullets.positionY - 2 >= enemy.positionY  &&
+        bullets.positionY + 2 <= enemy.positionY + enemy.size)
         flag = true;
     return flag ;
 }
@@ -94,47 +94,47 @@ function changeEnemy() {
     if ( hp <= 0 && dich.type === enemy1) {
         map.map = MAP2 ;
         dich.changeEnemy2();
-        sung.hp += 1 ;
+        sung.ap += 1 ;
         hp = hp2
     }
     if ( hp <= 0 && dich.type === enemy2) {
         map.map = MAP3 ;
         dich.changeEnemy3();
-        sung.hp += 2 ;
+        sung.ap += 2 ;
         hp = hp3
     }
     if ( hp <= 0 && dich.type === enemy3) {
         map.map = MAP4 ;
         dich.changeEnemy4();
-        sung.hp += 3;
+        sung.ap += 3;
         hp = hp4;
         document.getElementById("tot").innerHTML = tot
     }
     if ( hp <= 0 && dich.type === enemy4) {
         map.map = MAP5 ;
         dich.changeEnemy5();
-        sung.hp += 4 ;
+        sung.ap += 4 ;
         hp = hp5;
         document.getElementById("xe").innerHTML = xe
     }
     if ( hp <= 0 && dich.type === enemy5) {
         map.map = MAP6 ;
         dich.changeEnemy6();
-        sung.hp += 5;
+        sung.ap += 5;
         hp = hp6;
         document.getElementById("ma").innerHTML = ma
     }
     if ( hp <= 0 && dich.type === enemy6) {
         map.map = MAP7 ;
         dich.changeEnemy7();
-        sung.hp +=6;
+        sung.ap +=6;
         hp = hp7;
         document.getElementById("tuong").innerHTML = tuong
     }
     if ( hp <= 0 && dich.type === enemy7) {
         map.map = MAP8 ;
         dich.changeEnemy8();
-        sung.hp += 7 ;
+        sung.ap += 7 ;
         hp = hp8;
         document.getElementById("hau").innerHTML = hau
     }
@@ -151,20 +151,32 @@ function bulletFlying() {
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpactWithEnemy(sung,bullets[i],dich) === true && flagToEnd === true )
+        if (checkImpactWithEnemy(sung,bullets[i],dich) === true && flagToEnd === true ) {
             hp -= sung.damage;
-
+            score += dich.multiPoints * sung.damage;
+            bullets.pop();
+        }
     }
     for (let j = 0; j <enemyBullets.length ; j++) {
         if (enemyBullets[j].positionX > 0) {
             enemyBullets[j].moveEnemyBullet();
             enemyBullets[j].drawEnemyBullet();
         } else continue;
-        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true && flagToEnd === true)
-            sung.hp -= enemyBullets[j].damage;
+        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true && flagToEnd === true) {
+           if ( sung.ap > 0)
+            sung.ap -= enemyBullets[j].damage;
+           else {
+                sung.hp += sung.ap ;
+                sung.ap = 0;
+                sung.hp -= enemyBullets[j].damage;
+            }
+           enemyBullets.pop();
+        }
     }
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
+    document.getElementById("yourAP").value = sung.ap;
+    document.getElementById("yourScore").value = score;
     if ( flagToEnd === true) {
         sung.drawWeapon();
         changeEnemy();
