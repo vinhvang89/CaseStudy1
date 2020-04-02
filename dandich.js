@@ -3,8 +3,10 @@ let ftx = f.getContext("2d");
 const BULLETENEMY = "dandich.jpg";
 const GRENADE = "luudan.png";
 const KNIVE = "dao.png";
-let EnemyBullet = function (enemy) {
-    this.type = BULLETENEMY;
+let EnemyBullet = function (enemy,type,speed,damage) {
+    this.type = type;
+    this.speed = speed;
+    this.damage = damage;
     this.positionX = enemy.positionX;
     this.positionY = enemy.positionY ;
     this.drawEnemyBullet = function () {
@@ -13,7 +15,7 @@ let EnemyBullet = function (enemy) {
         ftx.drawImage(image,this.positionX,this.positionY)
     };
     this.moveEnemyBullet = function () {
-        this.positionX -= 3;
+        this.positionX -= this.speed;
     };
 
 };

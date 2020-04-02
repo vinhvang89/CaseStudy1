@@ -24,8 +24,12 @@ let Enemy = function () {
     this.positionY = 0;
     this.sizeY1 = 30;
     this.sizeY2 = 160;
-    this.reloadTime = 200;
-    this.reloadCount = 0;
+    this.reloadTime1 = 197;
+    this.reloadCount1 = 0;
+    this.reloadTime2 = 289;
+    this.reloadCount2 = 0;
+    this.reloadTime3 = 451;
+    this.reloadCount3 = 0;
     this.drawEnemy = function () {
         let image = new Image();
         image.src = this.type;
@@ -39,8 +43,16 @@ let Enemy = function () {
         this.positionY += this.speed;
     };
     this.fire = function () {
-        let enemyBullet = new EnemyBullet(this,15);
+        let enemyBullet = new EnemyBullet(this,BULLETENEMY,3,1);
         enemyBullets.push(enemyBullet);
+    };
+    this.throwKnive = function () {
+        let knive = new EnemyBullet(this,KNIVE,2,2);
+        enemyBullets.push(knive);
+    };
+    this.throwGrenade = function () {
+        let grenade = new  EnemyBullet(this,GRENADE,2,5);
+        enemyBullets.push(grenade)
     };
     this.changeEnemy2 = function () {
         this.type = enemy2;

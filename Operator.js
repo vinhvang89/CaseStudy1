@@ -6,6 +6,31 @@ let map = new Map();
 function clearMap() {
     ctx.clearRect(0,0,1400,500)
 }
+function enemyFire () {
+    dich.reloadCount1++;
+    if ( dich.reloadCount1 >= dich.reloadTime1 ) {dich.fire();dich.reloadCount1 = 0}
+}
+function enemyThrowKnive() {
+    dich.reloadCount2++;
+    if ( dich.reloadCount2 >= dich.reloadTime2){dich.throwKnive();dich.reloadCount2 = 0}
+}
+function enemyThrowGrenade() {
+    dich.reloadCount3++;
+    if ( dich.reloadCount3 >= dich.reloadTime3){dich.throwGrenade();dich.reloadCount3 = 0}
+}
+function enemyAttack() {
+    if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3)
+        enemyFire();
+    else if ( dich.type === enemy4 ) {
+        enemyThrowKnive();
+        enemyThrowGrenade();
+    }
+    else {
+        enemyFire();
+        enemyThrowKnive();
+        enemyThrowGrenade()
+    }
+}
 function moveEnemy() {
 
     if(dich.positionY >= 400){
@@ -20,16 +45,11 @@ function moveEnemy() {
             flag = 0;
         }
     }
-    enemyFire();
+    enemyAttack();
 
     requestAnimationFrame(moveEnemy);
 }
 
-function enemyFire () {
-    dich.reloadCount++;
-    if ( dich.reloadCount >= dich.reloadTime ) {dich.fire();dich.reloadCount = 0}
-
-}
 
 function checkImpactWithEnemy(gun,bullets,enemy) {
     let flag = false;
@@ -124,12 +144,12 @@ function bulletFlying() {
 
     }
     for (let j = 0; j <enemyBullets.length ; j++) {
-        if ( enemyBullets[j].positionX > 0){
+        if (enemyBullets[j].positionX > 0) {
             enemyBullets[j].moveEnemyBullet();
             enemyBullets[j].drawEnemyBullet();
         } else continue;
-        if ( checkImpactWithPlayer(sung,enemyBullets[j])===true)
-            sung.hp -= 1 ;
+        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true)
+            sung.hp -= enemyBullets[j].damage;
     }
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
