@@ -70,13 +70,20 @@ function checkImpactWithPlayer(gun,bullets) {
     return flag;
 }
 function endGame() {
-    let flag = false;
     if ( capacity1 === 0 && capacity2 === 0 &&
         capacity3 === 0 && capacity4 === 0 &&
-        capacity5 === 0) flag = true;
-    if ( sung.hp <= 0) flag = true;
-    if ( document.getElementById("vua").value === vua) flag = true;
-    if ( flag === true ) return alert("Game Over and press F5 to replay")
+        capacity5 === 0) {
+        clearMap();
+        drawLoseGame();
+    }
+    if ( sung.hp <= 0) {
+        clearMap();
+        drawLoseGame();
+    }
+    if ( document.getElementById("vua").value === vua){
+        clearMap();
+        drawWinImage()
+    }
 }
 function changeEnemy() {
     if ( hp <= 0 && dich.type === enemy1) {
