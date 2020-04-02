@@ -9,15 +9,15 @@ function clearMap() {
 }
 function enemyFire () {
     dich.reloadCount1++;
-    if ( dich.reloadCount1 >= dich.reloadTime1 ) {dich.fire();dich.reloadCount1 = 0}
+    if ( dich.reloadCount1 >= dich.reloadTime1 ) {dich.fire();dich.reloadCount1 = 1}
 }
 function enemyThrowKnive() {
     dich.reloadCount2++;
-    if ( dich.reloadCount2 >= dich.reloadTime2){dich.throwKnive();dich.reloadCount2 = 0}
+    if ( dich.reloadCount2 >= dich.reloadTime2){dich.throwKnive();dich.reloadCount2 = 2}
 }
 function enemyThrowGrenade() {
     dich.reloadCount3++;
-    if ( dich.reloadCount3 >= dich.reloadTime3){dich.throwGrenade();dich.reloadCount3 = 0}
+    if ( dich.reloadCount3 >= dich.reloadTime3){dich.throwGrenade();dich.reloadCount3 = 3}
 }
 function enemyAttack() {
     if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3)
@@ -142,6 +142,18 @@ function changeEnemy() {
         document.getElementById("vua").innerHTML = vua
     }
 }
+function changeToBloodPlayer(gun) {
+    if (gun.type === anaconda || gun.type === anacondaBan )
+        gun.type = ANACONDABLOOD;
+    if (gun.type === ak47 || gun.type === ak47Ban )
+        gun.type = AK47BLOOD;
+    if (gun.type === fnscar || gun.type === fnscarBan )
+        gun.type = FNSCARBLOOD;
+    if (gun.type === cheytac || gun.type === cheytacBan )
+        gun.type = CHEYTACBLOOD;
+    if (gun.type === bazooka || gun.type === bazookaBan)
+        gun.type = BAZOOKABLOOD;
+}
 
 function bulletFlying() {
     clearMap();
@@ -163,9 +175,10 @@ function bulletFlying() {
             enemyBullets[j].drawEnemyBullet();
         } else continue;
         if (checkImpactWithPlayer(sung, enemyBullets[j]) === true && flagToEnd === true) {
-           if ( sung.ap > 0)
-            sung.ap -= enemyBullets[j].damage;
-           else {
+            changeToBloodPlayer(sung);
+            if ( sung.ap > 0)
+                sung.ap -= enemyBullets[j].damage;
+            else {
                 sung.hp += sung.ap ;
                 sung.ap = 0;
                 sung.hp -= enemyBullets[j].damage;
@@ -186,15 +199,15 @@ function bulletFlying() {
     requestAnimationFrame(bulletFlying)
 }
 function returnTypeOfGun(gun) {
-    if (gun.type === anaconda || gun.type === anacondaBan)
+    if (gun.type === anaconda || gun.type === anacondaBan || gun.type === ANACONDABLOOD)
         gun.type = anaconda;
-    if (gun.type === ak47 || gun.type === ak47Ban)
+    if (gun.type === ak47 || gun.type === ak47Ban || gun.type === AK47BLOOD)
         gun.type = ak47;
-    if (gun.type === fnscar || gun.type === fnscarBan)
+    if (gun.type === fnscar || gun.type === fnscarBan || gun.type === FNSCARBLOOD)
         gun.type = fnscar;
-    if (gun.type === cheytac || gun.type === cheytacBan)
+    if (gun.type === cheytac || gun.type === cheytacBan || gun.type === CHEYTACBLOOD)
         gun.type = cheytac;
-    if (gun.type === bazooka || gun.type === bazookaBan)
+    if (gun.type === bazooka || gun.type === bazookaBan || gun.type === BAZOOKABLOOD)
         gun.type = bazooka;
     return gun.type
 }
@@ -242,31 +255,31 @@ function move(event) {
         }
         case 32: {
             if (capacity1 > 0 && flagToEnd === true)
-            if (sung.type === anaconda || sung.type === anacondaBan)  {
+            if (sung.type === anaconda || sung.type === anacondaBan || sung.type === ANACONDABLOOD)  {
                 sung.positionX = 12;
                 sung.type = anacondaBan;
                 sung.fire();
             }
             if (capacity2 > 0 && flagToEnd === true)
-            if (sung.type === ak47 || sung.type === ak47Ban) {
+            if (sung.type === ak47 || sung.type === ak47Ban || sung.type === AK47BLOOD) {
                 sung.positionX = 12;
                 sung.type = ak47Ban;
                 sung.fire();
             }
             if (capacity3 > 0 && flagToEnd === true)
-            if (sung.type === fnscar || sung.type === fnscarBan ) {
+            if (sung.type === fnscar || sung.type === fnscarBan || sung.type === FNSCARBLOOD ) {
                 sung.positionX = 10;
                 sung.type = fnscarBan;
                 sung.fire()
             }
             if (capacity4 > 0 && flagToEnd === true)
-            if (sung.type === cheytac || sung.type === cheytacBan) {
+            if (sung.type === cheytac || sung.type === cheytacBan || sung.type === CHEYTACBLOOD) {
                 sung.positionX = 20;
                 sung.type = cheytacBan;
                 sung.fire()
             }
             if( capacity5 > 0 && flagToEnd === true)
-            if (sung.type === bazooka || sung.type === bazookaBan ) {
+            if (sung.type === bazooka || sung.type === bazookaBan || sung.type === BAZOOKABLOOD ) {
                 sung.positionX = 20;
                 sung.type = bazookaBan;
                 sung.fire()
