@@ -8,29 +8,101 @@ function clearMap() {
     ctx.clearRect(0,0,1400,500)
 }
 function enemyFire () {
-    dich.reloadCount1++;
-    if ( dich.reloadCount1 >= dich.reloadTime1 ) {dich.fire();dich.reloadCount1 = 1}
+    dich.reloadCountFire++;
+    if ( dich.reloadCountFire >= dich.reloadTimeFire ) {
+        dich.fire();
+        dich.reloadCountFire = 1}
 }
 function enemyThrowKnive() {
-    dich.reloadCount2++;
-    if ( dich.reloadCount2 >= dich.reloadTime2){dich.throwKnive();dich.reloadCount2 = 2}
+    dich.reloadCountKnive++;
+    if ( dich.reloadCountKnive >= dich.reloadTimeKnive){
+        dich.throwKnive();
+        dich.reloadCountKnive = 2
+    }
 }
 function enemyThrowGrenade() {
-    dich.reloadCount3++;
-    if ( dich.reloadCount3 >= dich.reloadTime3){dich.throwGrenade();dich.reloadCount3 = 3}
+    dich.reloadCountGrenade++;
+    if ( dich.reloadCountGrenade >= dich.reloadTimeGrenade){
+        dich.throwGrenade();
+        dich.reloadCountGrenade = 3
+    }
+}
+function enemyThrowBanhMy() {
+    dich.reloadCountBanhMy++;
+    if ( dich.reloadCountBanhMy >= dich.reloadTimeBanhMy){
+        dich.throwBanhMy();
+        dich.reloadCountBanhMy = 4
+    }
+}
+function enemyThrowTraSua() {
+    dich.reloadCountTraSua++;
+    if ( dich.reloadCountTraSua >= dich.reloadTimeTraSua){
+        dich.throwTraSua();
+        dich.reloadCountTraSua = 5
+    }
+}
+function enemyThrowGaLuoc() {
+    dich.reloadCountGaLuoc++;
+    if ( dich.reloadCountGaLuoc >= dich.reloadTimeGaLuoc){
+        dich.throwGaLuoc();
+        dich.reloadCountGaLuoc = 6
+    }
+}
+function enemyThrowPho() {
+    dich.reloadCountPho++;
+    if ( dich.reloadCountPho >= dich.reloadTimePho){
+        dich.throwPho();
+        dich.reloadCountPho = 7
+    }
+}
+function enemyThrowShit() {
+    dich.reloadCountShit++;
+    if ( dich.reloadCountShit >= dich.reloadTimeShit){
+        dich.throwShit();
+        dich.reloadCountShit = 8
+    }
+}
+function enemyThrowToilet() {
+    dich.reloadCountToilet++;
+    if ( dich.reloadCountToilet >= dich.reloadTimeToilet){
+        dich.throwToilet();
+        dich.reloadCountToilet = 1;
+    }
 }
 function enemyAttack() {
     if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3)
         enemyFire();
-    else if ( dich.type === enemy4 ) {
+    if ( dich.type === enemy4 ) {
         enemyThrowKnive();
         enemyThrowGrenade();
     }
-    else {
+    if ( dich.type === enemy5) {
         enemyFire();
+        enemyThrowGrenade();
         enemyThrowKnive();
-        enemyThrowGrenade()
     }
+    if ( dich.type === enemy6) {
+        enemyFire();
+        enemyThrowGrenade();
+        enemyThrowGaLuoc();
+        enemyThrowPho();
+    }
+    if ( dich.type === enemy7){
+        enemyThrowKnive();
+        enemyThrowBanhMy();
+        enemyThrowShit();
+        enemyThrowToilet();
+        enemyThrowGaLuoc();
+    }
+    if ( dich.type === enemy8){
+        enemyFire();
+        enemyThrowBanhMy();
+        enemyThrowPho();
+        enemyThrowTraSua();
+        enemyThrowGrenade();
+        enemyThrowToilet();
+    }
+
 }
 function moveEnemy() {
 
@@ -46,29 +118,29 @@ function moveEnemy() {
             flag = 0;
         }
     }
+    console.log(dich.positionY +"," + dich.positionX);
     if ( flagToEnd === true)
         enemyAttack();
 
     requestAnimationFrame(moveEnemy);
 }
 
-
-function checkImpactWithEnemy(gun,bullets,enemy) {
+function checkImpact(object1,object2) {
     let flag = false;
-    if (bullets.positionX + 15 >= enemy.positionX + 30 &&
-        bullets.positionX + 15 <= enemy.positionX + 50 &&
-        bullets.positionY - 2 >= enemy.positionY  &&
-        bullets.positionY + 2 <= enemy.positionY + enemy.size)
-        flag = true;
-    return flag ;
-}
-function checkImpactWithPlayer(gun,bullets) {
-    let flag = false;
-    if ( bullets.positionX + 20 >= gun.positionX - 20 &&
-         bullets.positionX + 20 <= gun.positionX + 20 &&
-         bullets.positionY + 2 >= gun.positionY - 50 &&
-         bullets.positionY + 2 <= gun.positionY + 50)
+    if ( object1.positionX - object1.sizeX >= object2.positionX - object2.sizeX &&
+         object1.positionX + object1.sizeX <= object2.positionX + object2.sizeX &&
+         object1.positionY - object1.sizeY >= object2.positionY - object2.sizeY &&
+         object1.positionY + object1.sizeY <= object2.positionY + object2.sizeY)
          flag = true;
+    return flag;
+}
+function checkImpactWithEnemy(bullet) {
+    let flag = false ;
+    if ( bullet.positionX - bullet.sizeX >= dich.positionX &&
+         bullet.positionX + bullet.sizeX <= dich.positionX +50 &&
+         bullet.positionY - bullet.sizeY >= dich.positionY &&
+         bullet.positionY + bullet.sizeY <= dich.positionY + dich.sizeY)
+        flag = true;
     return flag;
 }
 function endGame() {
@@ -84,10 +156,11 @@ function endGame() {
         clearMap();
         drawLoseGame();
     }
-    if ( document.getElementById("vua").value === vua){
+    if ( dich.hp <= 0 && dich.type === enemy8 ){
+        flagToEnd = false;
         clearMap();
         drawWinImage();
-        flagToEnd = false;
+
     }
 }
 function changeEnemy() {
@@ -163,18 +236,19 @@ function bulletFlying() {
         bullets[i].moveRight();
         bullets[i].drawBullet();
         }else continue;
-        if (checkImpactWithEnemy(sung,bullets[i],dich) === true && flagToEnd === true ) {
-            hp -= sung.damage;
-            score += dich.multiPoints * sung.damage;
-            bullets.pop();
+        if ( checkImpactWithEnemy(bullets[i]) === true && flagToEnd === true ) {
+            hp -= bullets[i].damage;
+            score += dich.multiPoints * bullets[i].damage;
+            bullets.splice(i,1);
+
         }
     }
     for (let j = 0; j <enemyBullets.length ; j++) {
         if (enemyBullets[j].positionX > 0) {
-            enemyBullets[j].moveEnemyBullet();
-            enemyBullets[j].drawEnemyBullet();
+            enemyBullets[j].moveLeft();
+            enemyBullets[j].drawBullet();
         } else continue;
-        if (checkImpactWithPlayer(sung, enemyBullets[j]) === true && flagToEnd === true) {
+        if (checkImpact(enemyBullets[j],sung) === true && flagToEnd === true) {
             changeToBloodPlayer(sung);
             if ( sung.ap > 0)
                 sung.ap -= enemyBullets[j].damage;
@@ -183,7 +257,8 @@ function bulletFlying() {
                 sung.ap = 0;
                 sung.hp -= enemyBullets[j].damage;
             }
-           enemyBullets.pop();
+            enemyBullets.splice(j,1);
+
         }
     }
     document.getElementById("enemyHP").value = hp;
@@ -258,31 +333,31 @@ function move(event) {
             if (sung.type === anaconda || sung.type === anacondaBan || sung.type === ANACONDABLOOD)  {
                 sung.positionX = 12;
                 sung.type = anacondaBan;
-                sung.fire();
+                sung.anacondaFire();
             }
             if (capacity2 > 0 && flagToEnd === true)
             if (sung.type === ak47 || sung.type === ak47Ban || sung.type === AK47BLOOD) {
                 sung.positionX = 12;
                 sung.type = ak47Ban;
-                sung.fire();
+                sung.ak47Fire();
             }
             if (capacity3 > 0 && flagToEnd === true)
             if (sung.type === fnscar || sung.type === fnscarBan || sung.type === FNSCARBLOOD ) {
                 sung.positionX = 10;
                 sung.type = fnscarBan;
-                sung.fire()
+                sung.fnscarFire()
             }
             if (capacity4 > 0 && flagToEnd === true)
             if (sung.type === cheytac || sung.type === cheytacBan || sung.type === CHEYTACBLOOD) {
                 sung.positionX = 20;
                 sung.type = cheytacBan;
-                sung.fire()
+                sung.cheytacFire()
             }
             if( capacity5 > 0 && flagToEnd === true)
             if (sung.type === bazooka || sung.type === bazookaBan || sung.type === BAZOOKABLOOD ) {
                 sung.positionX = 20;
                 sung.type = bazookaBan;
-                sung.fire()
+                sung.bazookaFire()
             }
 
             if (sung.type === anaconda || sung.type === anacondaBan)

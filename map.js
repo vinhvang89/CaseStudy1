@@ -1,5 +1,3 @@
-let m = document.getElementById("myCanvas");
-let mtx = m.getContext("2d");
 const MAP1 = "map1.jpg";
 const MAP2 = "map2.jpg";
 const MAP3 = "map3.jpg";
@@ -14,6 +12,6 @@ let Map = function () {
     this.drawMap = function () {
         let image = new Image();
         image.src = this.map;
-        mtx.drawImage(image,0,0)
+        ctx.drawImage(image,0,0)
     }
 };

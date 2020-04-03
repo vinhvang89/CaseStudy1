@@ -22,12 +22,11 @@ let capacity4 = 10;
 let capacity5 = 5;
 let bullets = [];
 let Weapons = function () {
+    this.sizeX = 50;
+    this.sizeY = 50;
     this.hp = 10;
     this.ap = 10;
     this.type = anaconda;
-    this.damage = 1;
-    this.bulletSpeed = 15;
-    this.capacity = 1000;
     this.positionX = 0;
     this.positionY = 0;
     this.strength = 10;
@@ -48,56 +47,46 @@ let Weapons = function () {
             this.positionY += this.speed
         }
     };
+    this.anacondaFire = function () {
+        let anacondaBullet = new Bullet(this,ANACONDABULLET,20,1,10,2,150,10);
+        bullets.push(anacondaBullet);
+    };
+    this.ak47Fire = function () {
+        let ak47Bullet = new Bullet(this,AK47BULLET,23,12,20,5,150,10);
+        bullets.push(ak47Bullet);
+    };
+    this.fnscarFire = function () {
+        let fnscarBullet = new Bullet(this,FNSCARBULLET,25,10,20,4,150,28);
+        bullets.push(fnscarBullet);
+    };
+    this.cheytacFire = function () {
+        let cheytacBullet = new Bullet(this,CHEYTACBULLET,30,35,30,5,150,20);
+        bullets.push(cheytacBullet);
+    };
+    this.bazookaFire = function () {
+        let rocket = new Bullet(this,ROCKET,20,50,30,8,150,26);
+        bullets.push(rocket);
+    };
 
     this.changeto1 = function () {
         this.type = anaconda;
-        this.damage = 1;
-        this.bulletSpeed = 20;
-        this.capacity = capacity1;
         this.weight = 2;
     };
     this.changeto2 = function () {
         this.type = ak47;
-        this.damage = 12;
-        this.bulletSpeed = 23;
-        this.capacity = capacity2;
         this.weight = 4;
     };
     this.changeto3 = function () {
         this.type = fnscar;
-        this.damage = 10;
-        this.bulletSpeed = 25;
-        this.capacity = capacity3;
         this.weight = 4;
     };
     this.changeto4 = function () {
         this.type = cheytac;
-        this.damage = 35;
-        this.capacity = capacity4;
         this.weight = 6;
-        this.bulletSpeed = 30;
     };
     this.changeto5 = function () {
         this.type = bazooka;
-        this.damage = 50;
-        this.capacity = capacity5;
         this.weight = 7;
-        this.bulletSpeed = 15;
     };
-    this.fire = function () {
-        let a = 0;
-        if (this.type === anaconda || this.type === anacondaBan)
-            a = this.positionY + 11;
-        if (this.type === ak47 || this.type === ak47Ban)
-            a = this.positionY + 10;
-        if (this.type === fnscar || this.type === fnscarBan)
-            a = this.positionY + 28;
-        if (this.type === cheytac || this.type === cheytacBan)
-            a = this.positionY + 20;
-        if (this.type === bazooka || this.type === bazookaBan)
-            a = this.positionY + 26;
-        let bullet = new Bullet(this, this.positionX + 150, a);
-         bullets.push(bullet);
-    }
-};
+ };
 

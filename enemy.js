@@ -1,5 +1,3 @@
-let e = document.getElementById("myCanvas");
-let etx = e.getContext('2d');
 let enemyBullets =[];
 const enemy1 = "dich1.png";
 const enemy2 = "dich2.png";
@@ -22,18 +20,31 @@ let Enemy = function () {
     this.speed = 3;
     this.multiPoints = 1;
     this.positionX = 1250;
+    this.sizeY = 200;
     this.positionY = 0;
-    this.size = 200;
-    this.reloadTime1 = 197;
-    this.reloadCount1 = 1;
-    this.reloadTime2 = 289;
-    this.reloadCount2 = 2;
-    this.reloadTime3 = 451;
-    this.reloadCount3 = 3;
+    this.sizeX = 50;
+    this.reloadTimeFire = 197;
+    this.reloadCountFire = 1;
+    this.reloadTimeKnive = 289;
+    this.reloadCountKnive = 2;
+    this.reloadTimeGrenade = 451;
+    this.reloadCountGrenade = 3;
+    this.reloadTimeBanhMy  = 393;
+    this.reloadCountBanhMy = 4;
+    this.reloadTimeTraSua  = 322;
+    this.reloadCountTraSua = 5 ;
+    this.reloadTimeGaLuoc  = 615;
+    this.reloadCountGaLuoc = 6;
+    this.reloadTimePho  = 587;
+    this.reloadCountPho = 7 ;
+    this.reloadTimeShit  = 379;
+    this.reloadCountShit = 8;
+    this.reloadTimeToilet  = 711;
+    this.reloadCountToilet = 1 ;
     this.drawEnemy = function () {
         let image = new Image();
         image.src = this.type;
-        etx.drawImage(image, this.positionX, this.positionY)
+        ctx.drawImage(image,this.positionX,this.positionY)
 
     };
     this.moveEnemyUp = function () {
@@ -43,64 +54,95 @@ let Enemy = function () {
         this.positionY += this.speed;
     };
     this.fire = function () {
-        let enemyBullet = new EnemyBullet(this,BULLETENEMY,3,1);
+        let enemyBullet = new Bullet(this,BULLETENEMY,3,1,10,3,0,0);
         enemyBullets.push(enemyBullet);
     };
     this.throwKnive = function () {
-        let knive = new EnemyBullet(this,KNIVE,2,2);
+        let knive = new Bullet(this,KNIVE,2,2,20,7,0,0);
         enemyBullets.push(knive);
     };
     this.throwGrenade = function () {
-        let grenade = new  EnemyBullet(this,GRENADE,2,5);
+        let grenade = new  Bullet(this,GRENADE,2,5,20,20,0,0);
         enemyBullets.push(grenade)
+    };
+    this.throwPho = function () {
+        let pho = new Bullet(this,PHO,2,1,40,56,0,0);
+        enemyBullets.push(pho);
+    };
+    this.throwToilet = function () {
+        let toilet = new Bullet(this,TOILET,1,1,76,86,0,0);
+        enemyBullets.push(toilet);
+    };
+    this.throwBanhMy = function () {
+        let banhmy = new Bullet(this,BANHMY,2,2,30,19,0,0);
+        enemyBullets.push(banhmy);
+    };
+    this.throwShit = function () {
+        let shit = new Bullet(this,SHIT,2,4,24,24,0,0);
+        enemyBullets.push(shit);
+    };
+    this.throwTraSua = function () {
+        let trasua = new Bullet(this,TRASUA,2,1,20,34,0,0);
+        enemyBullets.push(trasua);
+    };
+    this.throwGaLuoc = function () {
+        let galuoc = new  Bullet(this,GALUOC,1,3,40,38,0,0);
+        enemyBullets.push(galuoc)
     };
     this.changeEnemy2 = function () {
         this.type = enemy2;
         this.speed = 3;
         this.positionX = 1250;
-        this.size = 170;
+        this.sizeX = 100;
+        this.sizeY = 160;
         this.multiPoints = 2;
     };
     this.changeEnemy3 = function () {
         this.type = enemy3;
         this.speed = 3;
         this.positionX = 1250;
-        this.size = 160;
+        this.sizeX = 100;
+        this.sizeY = 160;
         this.multiPoints = 3;
     };
     this.changeEnemy4 = function () {
         this.type = enemy4;
         this.speed = 3;
         this.positionX = 1250;
-        this.size = 150;
+        this.sizeX = 100;
+        this.sizeY = 150;
         this.multiPoints = 4;
     };
     this.changeEnemy5 = function () {
         this.type = enemy5;
         this.speed = 4;
         this.positionX = 1250;
-        this.size = 132;
+        this.sizeX = 102;
+        this.sizeY = 136;
         this.multiPoints = 5;
     };
     this.changeEnemy6 = function () {
         this.type = enemy6;
         this.speed = 4;
         this.positionX = 1250;
-        this.size = 135;
+        this.sizeX = 100;
+        this.sizeY = 135;
         this.multiPoints = 6;
     };
     this.changeEnemy7 = function () {
         this.type = enemy7;
         this.speed = 5;
         this.positionX = 1300;
-        this.size = 100;
+        this.sizeX = 100;
+        this.sizeY = 100;
         this.multiPoints = 7;
     };
     this.changeEnemy8 = function () {
         this.type = enemy8;
         this.speed = 5;
         this.positionX = 1300;
-        this.size = 81;
+        this.sizeX = 70;
+        this.sizeY = 80;
         this.multiPoints = 8;
     };
 
