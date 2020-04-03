@@ -21,6 +21,7 @@ let capacity3 = 35;
 let capacity4 = 10;
 let capacity5 = 5;
 let bullets = [];
+let strength = 10;
 let Weapons = function () {
     this.sizeX = 50;
     this.sizeY = 50;
@@ -29,23 +30,12 @@ let Weapons = function () {
     this.type = anaconda;
     this.positionX = 0;
     this.positionY = 0;
-    this.strength = 10;
-    this.weight = 5;
-    this.speed = this.strength - this.weight;
+    this.weight = 2;
+    this.speed = strength - this.weight;
     this.drawWeapon = function () {
         let image = new Image();
         image.src = this.type;
         ctx.drawImage(image, this.positionX, this.positionY);
-    };
-    this.moveUp = function () {
-        if (this.positionY > 0) {
-            this.positionY -= this.speed
-        }
-    };
-    this.moveDown = function () {
-        if (this.positionY < 420) {
-            this.positionY += this.speed
-        }
     };
     this.anacondaFire = function () {
         let anacondaBullet = new Bullet(this,ANACONDABULLET,20,1,10,2,150,10);
@@ -87,6 +77,16 @@ let Weapons = function () {
     this.changeto5 = function () {
         this.type = bazooka;
         this.weight = 7;
+    };
+    this.moveUp = function () {
+        if (this.positionY > 0) {
+            this.positionY -= this.speed
+        }
+    };
+    this.moveDown = function () {
+        if (this.positionY < 420) {
+            this.positionY += this.speed
+        }
     };
  };
 

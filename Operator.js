@@ -118,10 +118,9 @@ function moveEnemy() {
             flag = 0;
         }
     }
-    console.log(dich.positionY +"," + dich.positionX);
     if ( flagToEnd === true)
+        returnEnemy(dich);
         enemyAttack();
-
     requestAnimationFrame(moveEnemy);
 }
 
@@ -227,6 +226,36 @@ function changeToBloodPlayer(gun) {
     if (gun.type === bazooka || gun.type === bazookaBan)
         gun.type = BAZOOKABLOOD;
 }
+function changetoTrungDan(enemy) {
+    if (enemy.type === enemy1) enemy.type = TRUNG1;
+    if (enemy.type === enemy2) enemy.type = TRUNG2;
+    if (enemy.type === enemy3) enemy.type = TRUNG3;
+    if (enemy.type === enemy4) enemy.type = TRUNG4;
+    if (enemy.type === enemy5) enemy.type = TRUNG5;
+    if (enemy.type === enemy6) enemy.type = TRUNG6;
+    if (enemy.type === enemy7) enemy.type = TRUNG7;
+    if (enemy.type === enemy8) enemy.type = TRUNG8;
+
+}
+function returnEnemy(enemy) {
+    if( enemy.type === enemy1 || enemy.type === TRUNG1)
+        enemy.type = enemy1;
+    if( enemy.type === enemy2 || enemy.type === TRUNG2)
+        enemy.type = enemy2;
+    if( enemy.type === enemy3 || enemy.type === TRUNG3)
+        enemy.type = enemy3;
+    if( enemy.type === enemy4 || enemy.type === TRUNG4)
+        enemy.type = enemy4;
+    if( enemy.type === enemy5 || enemy.type === TRUNG5)
+        enemy.type = enemy5;
+    if( enemy.type === enemy6 || enemy.type === TRUNG6)
+        enemy.type = enemy6;
+    if( enemy.type === enemy7 || enemy.type === TRUNG7)
+        enemy.type = enemy7;
+    if( enemy.type === enemy8 || enemy.type === TRUNG8)
+        enemy.type = enemy8;
+
+}
 
 function bulletFlying() {
     clearMap();
@@ -238,9 +267,9 @@ function bulletFlying() {
         }else continue;
         if ( checkImpactWithEnemy(bullets[i]) === true && flagToEnd === true ) {
             hp -= bullets[i].damage;
+            changetoTrungDan(dich);
             score += dich.multiPoints * bullets[i].damage;
             bullets.splice(i,1);
-
         }
     }
     for (let j = 0; j <enemyBullets.length ; j++) {
@@ -263,6 +292,9 @@ function bulletFlying() {
 
         }
     }
+    if(sung.hp <= 8) strength = 9;
+    if(sung.hp <= 6) strength = 8;
+    if(sung.hp <= 4) strength = 7;
     document.getElementById("enemyHP").value = hp;
     document.getElementById("yourHP").value = sung.hp;
     document.getElementById("yourAP").value = sung.ap;
@@ -396,6 +428,7 @@ function run() {
     window.addEventListener('keydown',move);
 }
 bulletFlying();
+
 moveEnemy();
 
 
