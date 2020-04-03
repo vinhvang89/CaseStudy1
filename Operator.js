@@ -71,31 +71,32 @@ function enemyThrowToilet() {
 }
 function enemyAttack() {
 
-    if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3)
+    if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3
+        dich.type === TRUNG1 || dich.type === TRUNG2 || dich.type === TRUNG3)
         enemyFire();
-    if ( dich.type === enemy4 ) {
+    if ( dich.type === enemy4 || dich.type === TRUNG4 ) {
         enemyThrowKnive();
         enemyThrowGrenade();
     }
-    if ( dich.type === enemy5) {
+    if ( dich.type === enemy5 || dich.type === TRUNG5) {
         enemyFire();
         enemyThrowGrenade();
         enemyThrowKnive();
     }
-    if ( dich.type === enemy6) {
+    if ( dich.type === enemy6 || dich.type === TRUNG6) {
         enemyFire();
         enemyThrowGrenade();
         enemyThrowGaLuoc();
         enemyThrowPho();
     }
-    if ( dich.type === enemy7){
+    if ( dich.type === enemy7 || dich.type === TRUNG7){
         enemyThrowKnive();
         enemyThrowBanhMy();
         enemyThrowShit();
         enemyThrowToilet();
         enemyThrowGaLuoc();
     }
-    if ( dich.type === enemy8){
+    if ( dich.type === enemy8 || dich.type === TRUNG8){
         enemyFire();
         enemyThrowBanhMy();
         enemyThrowPho();
