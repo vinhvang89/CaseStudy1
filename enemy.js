@@ -20,9 +20,8 @@ let Enemy = function () {
     this.speed = 3;
     this.multiPoints = 1;
     this.positionX = 1250;
-    this.sizeY = 200;
+    this.size = 200;
     this.positionY = 0;
-    this.sizeX = 50;
     this.reloadTimeFire = 197;
     this.reloadCountFire = 1;
     this.reloadTimeKnive = 289;
@@ -93,56 +92,49 @@ let Enemy = function () {
         this.type = enemy2;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeX = 100;
-        this.sizeY = 160;
+        this.size = 160;
         this.multiPoints = 2;
     };
     this.changeEnemy3 = function () {
         this.type = enemy3;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeX = 100;
-        this.sizeY = 160;
+        this.size = 160;
         this.multiPoints = 3;
     };
     this.changeEnemy4 = function () {
         this.type = enemy4;
         this.speed = 3;
         this.positionX = 1250;
-        this.sizeX = 100;
-        this.sizeY = 150;
+        this.size = 150;
         this.multiPoints = 4;
     };
     this.changeEnemy5 = function () {
         this.type = enemy5;
         this.speed = 4;
         this.positionX = 1250;
-        this.sizeX = 102;
-        this.sizeY = 136;
+        this.size = 136;
         this.multiPoints = 5;
     };
     this.changeEnemy6 = function () {
         this.type = enemy6;
         this.speed = 4;
         this.positionX = 1250;
-        this.sizeX = 100;
-        this.sizeY = 135;
+        this.size = 135;
         this.multiPoints = 6;
     };
     this.changeEnemy7 = function () {
         this.type = enemy7;
         this.speed = 5;
         this.positionX = 1300;
-        this.sizeX = 100;
-        this.sizeY = 100;
+        this.size = 100;
         this.multiPoints = 7;
     };
     this.changeEnemy8 = function () {
         this.type = enemy8;
         this.speed = 5;
         this.positionX = 1300;
-        this.sizeX = 70;
-        this.sizeY = 80;
+        this.size = 80;
         this.multiPoints = 8;
     };
 

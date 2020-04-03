@@ -137,9 +137,9 @@ function checkImpact(object1,object2) {
 function checkImpactWithEnemy(bullet) {
     let flag = false ;
     if ( bullet.positionX - bullet.sizeX >= dich.positionX &&
-         bullet.positionX + bullet.sizeX <= dich.positionX +50 &&
+         bullet.positionX + bullet.sizeX <= dich.positionX +120 &&
          bullet.positionY - bullet.sizeY >= dich.positionY &&
-         bullet.positionY + bullet.sizeY <= dich.positionY + dich.sizeY)
+         bullet.positionY + bullet.sizeY <= dich.positionY + dich.size)
         flag = true;
     return flag;
 }
@@ -248,14 +248,16 @@ function bulletFlying() {
             enemyBullets[j].moveLeft();
             enemyBullets[j].drawBullet();
         } else continue;
-        if (checkImpact(enemyBullets[j],sung) === true && flagToEnd === true) {
-            changeToBloodPlayer(sung);
-            if ( sung.ap > 0)
-                sung.ap -= enemyBullets[j].damage;
-            else {
-                sung.hp += sung.ap ;
-                sung.ap = 0;
-                sung.hp -= enemyBullets[j].damage;
+        if (checkImpact(enemyBullets[j],sung) === true || checkImpact(sung,enemyBullets[j]) === true ) {
+            if( flagToEnd === true) {
+                changeToBloodPlayer(sung);
+                if (sung.ap > 0)
+                    sung.ap -= enemyBullets[j].damage;
+                else {
+                    sung.hp += sung.ap;
+                    sung.ap = 0;
+                    sung.hp -= enemyBullets[j].damage;
+                }
             }
             enemyBullets.splice(j,1);
 
