@@ -70,6 +70,7 @@ function enemyThrowToilet() {
     }
 }
 function enemyAttack() {
+
     if ( dich.type === enemy1 || dich.type === enemy2 || dich.type === enemy3)
         enemyFire();
     if ( dich.type === enemy4 ) {
@@ -105,7 +106,6 @@ function enemyAttack() {
 
 }
 function moveEnemy() {
-
     if(dich.positionY >= 400){
         flag = 1;
     }
@@ -119,7 +119,6 @@ function moveEnemy() {
         }
     }
     if ( flagToEnd === true)
-        returnEnemy(dich);
         enemyAttack();
     requestAnimationFrame(moveEnemy);
 }
@@ -363,6 +362,7 @@ function move(event) {
             break;
         }
         case 32: {
+            returnEnemy(dich);
             if (capacity1 > 0 && flagToEnd === true)
             if (sung.type === anaconda || sung.type === anacondaBan || sung.type === ANACONDABLOOD)  {
                 sung.positionX = 12;
